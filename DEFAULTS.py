@@ -12,6 +12,7 @@ logging.basicConfig(
 CODES = {
     200: '200 OK',
     404: '404 Not Found',
+    500: '505 Internal Server Error'
 }
 
 

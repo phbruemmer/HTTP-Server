@@ -124,14 +124,18 @@ class Server:
         :return:
         """
         request_data = client.recv(self.BUFFER).decode()
-        request = self.map_request(request_data)
-
-        match request["method"]:
-            case 'GET':
-                response = self.GET(request)
-                self.send_response(client, response)
-            case _:
-                logging.info("[get_request] request method (%s) not available at the moment.", request["method"])
+        try:
+            request = self.map_request(request_data)
+            match request["method"]:
+                case 'GET':
+                    response = self.GET(request)
+                    self.send_response(client, response)
+                case _:
+                    logging.info("[get_request] request method (%s) not available at the moment.", request["method"])
+        except Exception as e:
+            logging.error("[start] Unexpected error: %s", e)
+            response_500 = DEFAULTS.generate_response(500, self.HOST, 'files/500.html')
+            self.send_response(client, response_500)
 
 
 if __name__ == "__main__":
