@@ -1,8 +1,9 @@
 import os.path
 import socket
 import logging
-import struct
-import threading
+import time
+
+import DEFAULTS
 
 
 logging.basicConfig(
@@ -13,23 +14,28 @@ logging.basicConfig(
 
 
 class Server:
-    HOSTNAME = socket.gethostname()
-    HOST = socket.gethostbyname(HOSTNAME)
+    # bHOSTNAME = socket.gethostname()
+    # HOST = socket.gethostbyname(HOSTNAME)
+    HOST = '0.0.0.0'
     PORT = 80
 
     BUFFER = 512
 
-    DEFAULT_PATH = "files"
+    DEFAULT_PATH = "files\\"
 
     def __init__(self, server_files=None):
         self.FILES = server_files or self.DEFAULT_PATH
 
     def start(self):
+        """
+        starts the HTTP server.
+        :return: None
+        """
         logging.info("[start] Starting server on %s:%d ...", self.HOST, self.PORT)
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
                 sock.bind((self.HOST, self.PORT))
-                sock.listen(16)
+                sock.listen(1)
                 self.accept(sock)
         except socket.timeout:
             logging.error("[start] Connection timed out.")
@@ -41,11 +47,21 @@ class Server:
             raise
 
     def accept(self, sock):
+        """
+        Accepts the connection from the client.
+        :param sock: Socket from socket.socket(ipv4, TCP)
+        :return:
+        """
         client_sock, client_addr = sock.accept()
         logging.info("[accept] %s successfully connected.", client_addr)
         self.get_request(client_sock)
 
     def map_request(self, request):
+        """
+        Converts HTTP request to hashmap for better processing.
+        :param request: HTTP request (string)
+        :return: request hashmap / dictionary
+        """
         lines = request.split("\r\n")
         method, path_with_query, version = lines[0].split(" ")
 
@@ -77,25 +93,48 @@ class Server:
         }
 
     def send_response(self, client, response):
+        """
+        Sends http response to the client.
+        :param client: client_sock
+        :param response: generated http response from DEFAULTS function.
+        :return:
+        """
         logging.info("[send_response] Sending response...")
         client.send(response.encode())
 
-    def GET(self, client, request):
-        requested_file_path = self.FILES.join(request['path'])
-        if not os.path.exists(requested_file_path):
-            client.send(b'')
+    def GET(self, request):
+        """
+        Handles GET method from the HTTP request.
+        :param request: request Hashmap
+        :return:
+        """
+        requested_file_path = os.path.join(self.DEFAULT_PATH, request['path'].lstrip('/'))
+        if os.path.isfile(requested_file_path):
+            logging.info("[GET] Path found - 200 OK")
+            response = DEFAULTS.generate_response(200, self.HOST, os.path.join(requested_file_path))
+        else:
+            logging.info("[GET] No such path found - 404 Not Found.")
+            response = DEFAULTS.generate_response(404, self.HOST, os.path.join(self.DEFAULT_PATH, '404.html'))
+        return response
 
     def get_request(self, client):
+        """
+        HTTP request receiver.
+        :param client: client_sock
+        :return:
+        """
         request_data = client.recv(self.BUFFER).decode()
-        print(request_data)
         request = self.map_request(request_data)
 
         match request["method"]:
             case 'GET':
-                self.GET(client, request)
+                response = self.GET(request)
+                self.send_response(client, response)
             case _:
                 logging.info("[get_request] request method (%s) not available at the moment.", request["method"])
 
+
 if __name__ == "__main__":
     server = Server()
-    server.start()
+    while True:
+        server.start()
