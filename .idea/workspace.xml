@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Added Connection to HTTP-response.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- increased BUFFER and listener sizer.&#10;- Added infinity loop to accept connections.&#10;- Added receive_request function to receive the full request and reduce waiting time.">
       <change beforePath="$PROJECT_DIR$/http.py" beforeDir="false" afterPath="$PROJECT_DIR$/http.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,13 +145,22 @@
       <option name="project" value="LOCAL" />
       <updated>1732290186702</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- increased BUFFER and listener sizer.&#10;- Added infinity loop to accept connections.&#10;- Added receive_request function to receive the full request and reduce waiting time.">
+      <option name="closed" value="true" />
+      <created>1732290382874</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732290382874</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- initial commit" />
     <MESSAGE value="- Added css" />
     <MESSAGE value="- Added Connection to HTTP-response." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added Connection to HTTP-response." />
+    <MESSAGE value="- increased BUFFER and listener sizer.&#10;- Added infinity loop to accept connections.&#10;- Added receive_request function to receive the full request and reduce waiting time." />
+    <option name="LAST_COMMIT_MESSAGE" value="- increased BUFFER and listener sizer.&#10;- Added infinity loop to accept connections.&#10;- Added receive_request function to receive the full request and reduce waiting time." />
   </component>
 </project>

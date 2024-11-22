@@ -2,7 +2,6 @@ import os.path
 import socket
 import logging
 import threading
-import time
 
 import DEFAULTS
 
