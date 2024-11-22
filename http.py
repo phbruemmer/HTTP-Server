@@ -1,6 +1,7 @@
 import os.path
 import socket
 import logging
+import threading
 import time
 
 import DEFAULTS
@@ -19,7 +20,7 @@ class Server:
     HOST = '0.0.0.0'
     PORT = 80
 
-    BUFFER = 512
+    BUFFER = 8192
 
     DEFAULT_PATH = "files\\"
 
@@ -35,7 +36,7 @@ class Server:
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
                 sock.bind((self.HOST, self.PORT))
-                sock.listen(1)
+                sock.listen(16)
                 self.accept(sock)
         except socket.timeout:
             logging.error("[start] Connection timed out.")
@@ -52,9 +53,10 @@ class Server:
         :param sock: Socket from socket.socket(ipv4, TCP)
         :return:
         """
-        client_sock, client_addr = sock.accept()
-        logging.info("[accept] %s successfully connected.", client_addr)
-        self.get_request(client_sock)
+        while True:
+            client_sock, client_addr = sock.accept()
+            logging.info("[accept] %s successfully connected.", client_addr)
+            threading.Thread(target=self.get_request, args=(client_sock,), daemon=True).start()
 
     def map_request(self, request):
         """
@@ -111,11 +113,20 @@ class Server:
         requested_file_path = os.path.join(self.DEFAULT_PATH, request['path'].lstrip('/'))
         if os.path.isfile(requested_file_path):
             logging.info("[GET] Path found - 200 OK")
-            response = DEFAULTS.generate_response(200, self.HOST, os.path.join(requested_file_path))
+            response = DEFAULTS.generate_response(200, self.HOST, os.path.join(requested_file_path), False)
         else:
             logging.info("[GET] No such path found - 404 Not Found.")
-            response = DEFAULTS.generate_response(404, self.HOST, os.path.join(self.DEFAULT_PATH, '404.html'))
+            response = DEFAULTS.generate_response(404, self.HOST, os.path.join(self.DEFAULT_PATH, '404.html'), False)
         return response
+
+    def receive_request(self, client):
+        data = b''
+        while True:
+            part = client.recv(self.BUFFER)
+            data += part
+            if len(part) < self.BUFFER:
+                break
+        return data.decode()
 
     def get_request(self, client):
         """
@@ -123,7 +134,7 @@ class Server:
         :param client: client_sock
         :return:
         """
-        request_data = client.recv(self.BUFFER).decode()
+        request_data = self.receive_request(client)
         try:
             request = self.map_request(request_data)
             match request["method"]:
@@ -134,11 +145,13 @@ class Server:
                     logging.info("[get_request] request method (%s) not available at the moment.", request["method"])
         except Exception as e:
             logging.error("[start] Unexpected error: %s", e)
-            response_500 = DEFAULTS.generate_response(500, self.HOST, 'files/500.html')
+            logging.error("[start] Unexpected error: 500 Internal Server Error")
+            response_500 = DEFAULTS.generate_response(500, self.HOST, 'files/500.html', False)
             self.send_response(client, response_500)
+        finally:
+            client.close()
 
 
 if __name__ == "__main__":
     server = Server()
-    while True:
-        server.start()
+    server.start()
