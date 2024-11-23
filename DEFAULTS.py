@@ -2,7 +2,6 @@ import os.path
 import logging
 from datetime import datetime
 
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -30,7 +29,7 @@ def generate_response(code, server, full_path, close_connection):
 
     if not os.path.isfile(full_path):
         logging.error(f"[generate_response] File not found: %s", full_path)
-        raise
+        raise FileNotFoundError(f"[generate_response] File not found: {full_path}")
     file_size = os.path.getsize(full_path)
 
     with open(full_path, 'r') as file:
@@ -40,10 +39,10 @@ def generate_response(code, server, full_path, close_connection):
             f"Date: {formatted_time}\r\n"
             f"Server: {server}\r\n"
             f"Content-Type: text/{os.path.splitext(full_path)[1].lstrip('.')}; charset=UTF-8\r\n"
-            f"Connection: {'close' if close_connection else 'keep-alive'}"
+            f"Connection: {'close' if close_connection else 'keep-alive'}\r\n"
             f"Content-Length: {file_size}\r\n\n"
             f"{file_content}")
 
 
 if __name__ == "__main__":
-    print(generate_response(404, "Hans", 'files\\404.html'))
+    print(generate_response(404, "Hans", 'files\\404.html', True))
