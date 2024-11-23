@@ -3,6 +3,8 @@ import socket
 import logging
 import threading
 
+from backend import url_handler
+
 import DEFAULTS
 
 
@@ -134,8 +136,9 @@ class Server:
         :param request: request Hashmap with HTTP information
         :return:
         """
-        requested_file_path = os.path.join(self.DEFAULT_PATH, request['path'].lstrip('/'))
-        if os.path.isfile(requested_file_path):
+        requested_file_path = 'C:\\Users\\phbru\\PycharmProjects\\HTTP-Server\\files\\index.html'
+
+        if url_handler.check_urls(request['path']):
             logging.info("[GET] Path found - 200 OK")
             response = DEFAULTS.generate_response(200, self.HOST, os.path.join(requested_file_path), True)
         else:

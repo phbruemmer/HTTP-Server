@@ -1989,3 +1989,407 @@ Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
 Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
 
 
+[Server] request #1:
+
+GET /index.html?user-input= HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=Test
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #2:
+
+GET /index.html?user-input=Test HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #1:
+
+GET /index.html?user-input=Test HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+Cache-Control: max-age=0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #1:
+
+GET /index.html?user-input=Test HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+Cache-Control: max-age=0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #2:
+
+GET /index.html?user-input-1=&user-input-2= HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=Test
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #3:
+
+GET /css/style.css HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+DNT: 1
+Accept: text/css,*/*;q=0.1
+Referer: http://192.168.115.200/index.html?user-input-1=&user-input-2=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #4:
+
+GET /index.html?user-input-1=fads&user-input-2=fdsa HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=Test
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #5:
+
+GET /css/style.css HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+DNT: 1
+Accept: text/css,*/*;q=0.1
+Referer: http://192.168.115.200/index.html?user-input-1=fads&user-input-2=fdsa
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #6:
+
+GET /index.html?user-input=Test HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+Cache-Control: max-age=0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #7:
+
+GET /index.html?user-input-1= HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=Test
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #8:
+
+GET /index.html?user-input-1= HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input-1=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #9:
+
+GET /index.html?user-input-1= HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input-1=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #1:
+
+GET /index.html HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+Cache-Control: max-age=0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #2:
+
+GET /index.html?user-input-1=test&test=231 HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #3:
+
+GET /css/style.css HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+DNT: 1
+Accept: text/css,*/*;q=0.1
+Referer: http://192.168.115.200/index.html?user-input-1=test&test=231
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #4:
+
+GET /index.html?user-input-1=test&test=231 HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+Cache-Control: max-age=0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #5:
+
+GET /css/style.css HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+DNT: 1
+Accept: text/css,*/*;q=0.1
+Referer: http://192.168.115.200/index.html?user-input-1=test&test=231
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #6:
+
+GET /index.html HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+Cache-Control: max-age=0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #7:
+
+GET /index.html?user-input= HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #8:
+
+GET /index.html?user-input= HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #9:
+
+GET /index.html?user-input=test HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #1:
+
+GET /index.html?user-input=test HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+Cache-Control: max-age=0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #1:
+
+GET /index.html?user-input=test HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+Cache-Control: max-age=0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.115.200/index.html?user-input=
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #2:
+
+GET /css/style.css HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+DNT: 1
+Accept: text/css,*/*;q=0.1
+Referer: http://192.168.115.200/index.html?user-input=test
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #3:
+
+GET /index HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #4:
+
+GET /css/style.css HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+DNT: 1
+Accept: text/css,*/*;q=0.1
+Referer: http://192.168.115.200/index
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
+[Server] request #1:
+
+GET /index HTTP/1.1
+Host: 192.168.115.200
+Connection: keep-alive
+Cache-Control: max-age=0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: de,de-DE;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: csrftoken=B1odSJXf4eboWL6Su1lumC8FV61BHjOs
+
+
