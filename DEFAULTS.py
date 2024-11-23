@@ -1,6 +1,7 @@
 import os.path
 import logging
 from datetime import datetime
+import mimetypes
 
 logging.basicConfig(
     level=logging.INFO,
@@ -11,7 +12,7 @@ logging.basicConfig(
 CODES = {
     200: '200 OK',
     404: '404 Not Found',
-    500: '505 Internal Server Error'
+    500: '500 Internal Server Error'
 }
 
 
@@ -32,16 +33,19 @@ def generate_response(code, server, full_path, close_connection):
         raise FileNotFoundError(f"[generate_response] File not found: {full_path}")
     file_size = os.path.getsize(full_path)
 
-    with open(full_path, 'r') as file:
+    mime_type, _ = mimetypes.guess_type(full_path)
+    content_type = mime_type or 'application/octet-stream'
+
+    with open(full_path, 'rb') as file:
         file_content = file.read()
 
-    return (f"HTTP/1.1 {CODES[code]}\r\n"
-            f"Date: {formatted_time}\r\n"
-            f"Server: {server}\r\n"
-            f"Content-Type: text/{os.path.splitext(full_path)[1].lstrip('.')}; charset=UTF-8\r\n"
-            f"Connection: {'close' if close_connection else 'keep-alive'}\r\n"
-            f"Content-Length: {file_size}\r\n\n"
-            f"{file_content}")
+    headers = (f"HTTP/1.1 {CODES[code]}\r\n"
+               f"Date: {formatted_time}\r\n"
+               f"Server: {server}\r\n"
+               f"Content-Type: {content_type}; charset=UTF-8\r\n"
+               f"Connection: {'close' if close_connection else 'keep-alive'}\r\n"
+               f"Content-Length: {file_size}\r\n\r\n")
+    return headers + file_content.decode()
 
 
 if __name__ == "__main__":

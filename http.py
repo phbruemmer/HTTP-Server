@@ -26,6 +26,7 @@ class Server:
 
     def __init__(self, server_files=None):
         self.FILES = server_files or self.DEFAULT_PATH
+        self.shutdown_event = threading.Event()
         self.lock = threading.Lock()
         self.request_count = 0
 
@@ -49,6 +50,7 @@ class Server:
             logging.error("[start] Unexpected error: %s", e)
             raise
         finally:
+            logging.error("[start] Shutting down server")
             self.stop_server(sock)
 
     def stop_server(self, sock):
@@ -58,6 +60,7 @@ class Server:
         :return:
         """
         logging.info("[stop_server] Shutting down server...")
+        self.shutdown_event.set()
         sock.close()
 
     def accept(self, sock):
@@ -66,10 +69,14 @@ class Server:
         :param sock: Socket from socket.socket(ipv4, TCP)
         :return:
         """
-        while True:
-            client_sock, client_addr = sock.accept()
-            logging.info("[accept] %s successfully connected.", client_addr)
-            threading.Thread(target=self.get_request, args=(client_sock,), daemon=True).start()
+        while not self.shutdown_event.is_set():
+            try:
+                client_sock, client_addr = sock.accept()
+                logging.info("[accept] %s successfully connected.", client_addr)
+                threading.Thread(target=self.get_request, args=(client_sock,), daemon=True).start()
+            except OSError as e:
+                logging.info("[accept] OSError - Likely due to socket closure: %s", e)
+                break
 
     def map_request(self, request):
         """
@@ -124,16 +131,16 @@ class Server:
     def GET(self, request):
         """
         Handles GET method from the HTTP request.
-        :param request: request Hashmap
+        :param request: request Hashmap with HTTP information
         :return:
         """
         requested_file_path = os.path.join(self.DEFAULT_PATH, request['path'].lstrip('/'))
         if os.path.isfile(requested_file_path):
             logging.info("[GET] Path found - 200 OK")
-            response = DEFAULTS.generate_response(200, self.HOST, os.path.join(requested_file_path), False)
+            response = DEFAULTS.generate_response(200, self.HOST, os.path.join(requested_file_path), True)
         else:
             logging.info("[GET] No such path found - 404 Not Found.")
-            response = DEFAULTS.generate_response(404, self.HOST, os.path.join(self.DEFAULT_PATH, '404.html'), False)
+            response = DEFAULTS.generate_response(404, self.HOST, os.path.join(self.DEFAULT_PATH, '404.html'), True)
         return response
 
     def receive_request(self, client):
@@ -171,7 +178,7 @@ class Server:
         except Exception as e:
             logging.error("[start] Unexpected error: %s", e)
             logging.error("[start] Unexpected error: 500 Internal Server Error")
-            response_500 = DEFAULTS.generate_response(500, self.HOST, 'files/500.html', False)
+            response_500 = DEFAULTS.generate_response(500, self.HOST, 'files/500.html', True)
             self.send_response(client, response_500)
         finally:
             client.close()
