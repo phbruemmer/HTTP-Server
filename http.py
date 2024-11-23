@@ -14,7 +14,7 @@ logging.basicConfig(
 
 
 class Server:
-    # bHOSTNAME = socket.gethostname()
+    # HOSTNAME = socket.gethostname()
     # HOST = socket.gethostbyname(HOSTNAME)
     HOST = '0.0.0.0'
     PORT = 80
@@ -22,9 +22,12 @@ class Server:
     BUFFER = 8192
 
     DEFAULT_PATH = "files\\"
+    LOG_FILE = "LOGS\\HTTP_LOG.txt"
 
     def __init__(self, server_files=None):
         self.FILES = server_files or self.DEFAULT_PATH
+        self.lock = threading.Lock()
+        self.request_count = 0
 
     def start(self):
         """
@@ -45,6 +48,17 @@ class Server:
         except Exception as e:
             logging.error("[start] Unexpected error: %s", e)
             raise
+        finally:
+            self.stop_server(sock)
+
+    def stop_server(self, sock):
+        """
+        Stops the server and closes the socket.
+        :param sock: Socket Object
+        :return:
+        """
+        logging.info("[stop_server] Shutting down server...")
+        sock.close()
 
     def accept(self, sock):
         """
@@ -63,8 +77,12 @@ class Server:
         :param request: HTTP request (string)
         :return: request hashmap / dictionary
         """
-        lines = request.split("\r\n")
-        method, path_with_query, version = lines[0].split(" ")
+        try:
+            lines = request.split("\r\n")
+            method, path_with_query, version = lines[0].split(" ")
+        except ValueError as e:
+            logging.error("[map_request] Malformed request: %s", e)
+            raise ValueError("Invalid HTTP request line.")
 
         if '?' in path_with_query:
             path, query_string = path_with_query.split('?', 1)
@@ -133,7 +151,15 @@ class Server:
         :param client: client_sock
         :return:
         """
+
         request_data = self.receive_request(client)
+
+        with self.lock:
+            self.request_count += 1
+            logging.info("[get_request] Request #%s being processed...", self.request_count)
+            with open(self.LOG_FILE, 'a') as log:
+                log.write(f'[Server] request #{self.request_count}:\n\n{request_data}\n')
+
         try:
             request = self.map_request(request_data)
             match request["method"]:
@@ -149,6 +175,8 @@ class Server:
             self.send_response(client, response_500)
         finally:
             client.close()
+            with self.lock:
+                logging.info("[get_request] finished processing request #%s", self.request_count)
 
 
 if __name__ == "__main__":
