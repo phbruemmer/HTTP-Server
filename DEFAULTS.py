@@ -16,9 +16,10 @@ CODES = {
 }
 
 
-def generate_response(code, server, full_path, close_connection):
+def generate_response(code, server, full_path, close_connection, modified_file=None):
     """
     Generate an HTTP response based on the status code, server name, and requested file path.
+    :param modified_file: In case the file was internally modified you can add new file content in here.
     :param close_connection: True: close || False: keep-alive
     :param code: The HTTP status Code (e.g. 200, 400).
     :param server: The server name or identifier
@@ -31,13 +32,17 @@ def generate_response(code, server, full_path, close_connection):
     if not os.path.isfile(full_path):
         logging.error(f"[generate_response] File not found: %s", full_path)
         raise FileNotFoundError(f"[generate_response] File not found: {full_path}")
-    file_size = os.path.getsize(full_path)
 
     mime_type, _ = mimetypes.guess_type(full_path)
     content_type = mime_type or 'application/octet-stream'
 
-    with open(full_path, 'rb') as file:
-        file_content = file.read()
+    if modified_file is None:
+        with open(full_path, 'rb') as file:
+            file_content = file.read()
+    else:
+        file_content = modified_file.encode()
+
+    file_size = len(file_content)
 
     headers = (f"HTTP/1.1 {CODES[code]}\r\n"
                f"Date: {formatted_time}\r\n"
