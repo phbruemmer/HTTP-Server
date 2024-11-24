@@ -8,5 +8,6 @@ def check_urls(url):
     return valid
 
 
-def handle(args):
-    print(args)
+def handle(request):
+    response = urls.URL_PATTERNS[request['path']](request, request['query_params'])
+    return response
