@@ -5,6 +5,7 @@ import threading
 
 from backend import url_handler
 
+import views
 import DEFAULTS
 
 
@@ -136,11 +137,13 @@ class Server:
         :param request: request Hashmap with HTTP information
         :return:
         """
-        requested_file_path = 'C:\\Users\\phbru\\PycharmProjects\\HTTP-Server\\files\\index.html'
 
-        if url_handler.check_urls(request['path']):
+        if url_handler.check_urls(request['path']) and 'html' in request['headers']['Accept']:
             logging.info("[GET] Path found - 200 OK")
-            response = DEFAULTS.generate_response(200, self.HOST, os.path.join(requested_file_path), True)
+            response = url_handler.handle(request)
+        elif 'css' in request['headers']['Accept']:
+            response = DEFAULTS.generate_response(200, self.HOST, os.path.join(self.DEFAULT_PATH, request['path']), True)
+
         else:
             logging.info("[GET] No such path found - 404 Not Found.")
             response = DEFAULTS.generate_response(404, self.HOST, os.path.join(self.DEFAULT_PATH, '404.html'), True)
