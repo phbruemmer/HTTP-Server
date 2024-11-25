@@ -8,6 +8,8 @@ from backend import url_handler
 import DEFAULTS
 
 
+TXT_LOG = False
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -169,8 +171,9 @@ class Server:
         with self.lock:
             self.request_count += 1
             logging.info("[get_request] Request #%s being processed...", self.request_count)
-            with open(self.LOG_FILE, 'a') as log:
-                log.write(f'[Server] request #{self.request_count}:\n\n{request_data}\n')
+            if TXT_LOG:
+                with open(self.LOG_FILE, 'a') as log:
+                    log.write(f'[Server] request #{self.request_count}:\n\n{request_data}\n')
 
         try:
             request = self.map_request(request_data)

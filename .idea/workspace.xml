@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- changes in views.py due to changes in index.html">
-      <change afterPath="$PROJECT_DIR$/files/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LOGS/HTTP_LOG.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LOGS/HTTP_LOG.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
