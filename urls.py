@@ -2,6 +2,7 @@ import views
 
 URL_PATTERNS = {
     '/index': views.main,
+    '/register': views.register,
 }
 
 
