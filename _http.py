@@ -174,7 +174,6 @@ class Server:
             if TXT_LOG:
                 with open(self.LOG_FILE, 'a') as log:
                     log.write(f'[Server] request #{self.request_count}:\n\n{request_data}\n')
-
         try:
             request = self.map_request(request_data)
             match request["method"]:

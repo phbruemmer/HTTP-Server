@@ -37,5 +37,7 @@ def register(request):
         params = request_handler.get(request['body'])
         if not params['password-0'] == params['password-1']:
             args['info'] = 'Password does not match!'
+        else:
+            return render.render(request, 'files/home.html', args)
 
     return render.render(request, 'files/register.html', args)

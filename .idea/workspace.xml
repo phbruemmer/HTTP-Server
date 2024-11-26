@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- changes in views.py due to changes in index.html">
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Small changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOGS/HTTP_LOG.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LOGS/HTTP_LOG.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_http.py" beforeDir="false" afterPath="$PROJECT_DIR$/_http.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/request_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/request_handler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -312,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732463571056</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="- Small changes">
+      <option name="closed" value="true" />
+      <created>1732542084061</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1732542084061</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -330,6 +338,7 @@
     <MESSAGE value="- small changes" />
     <MESSAGE value="- small changes in the index.html file and added style index.css" />
     <MESSAGE value="- changes in views.py due to changes in index.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="- changes in views.py due to changes in index.html" />
+    <MESSAGE value="- Small changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Small changes" />
   </component>
 </project>

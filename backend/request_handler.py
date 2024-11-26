@@ -10,3 +10,4 @@ def get(data):
             b_arg = data.split('=')
             body_map[b_arg[0]] = b_arg[1]
     return body_map
+
