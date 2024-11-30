@@ -32,7 +32,7 @@ class Database:
                 if conn.is_connected():
                     logging.info("[database_connector-test] Successfully connected to the database.")
                     with conn.cursor() as cursor:
-                        function(cursor)
+                        return function(cursor)
         except mysql.connector.Error as e:
             logging.error('[database_connector-test] Connection error: %s', e)
             raise

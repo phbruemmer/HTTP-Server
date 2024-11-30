@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Tested MySQL connection with mysql.connector library">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Small changes in the database_connector.py file for better DB handling in the future">
       <change beforePath="$PROJECT_DIR$/backend/database_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/database_connector.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -328,7 +327,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732919220251</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="- Small changes in the database_connector.py file for better DB handling in the future">
+      <option name="closed" value="true" />
+      <created>1733000932767</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733000932767</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -348,6 +355,7 @@
     <MESSAGE value="- changes in views.py due to changes in index.html" />
     <MESSAGE value="- Small changes" />
     <MESSAGE value="- Tested MySQL connection with mysql.connector library" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Tested MySQL connection with mysql.connector library" />
+    <MESSAGE value="- Small changes in the database_connector.py file for better DB handling in the future" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Small changes in the database_connector.py file for better DB handling in the future" />
   </component>
 </project>
