@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Small changes">
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Tested MySQL connection with mysql.connector library">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/database_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/database_connector.py" afterDir="false" />
     </list>
@@ -45,19 +45,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.DEFAULTS.executor": "Run",
-    "Python._http (1).executor": "Run",
-    "Python._http (2).executor": "Run",
-    "Python._http.executor": "Run",
-    "Python.database_connector.executor": "Run",
-    "Python.http.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.DEFAULTS.executor&quot;: &quot;Run&quot;,
+    &quot;Python._http (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python._http (2).executor&quot;: &quot;Run&quot;,
+    &quot;Python._http.executor&quot;: &quot;Run&quot;,
+    &quot;Python.database_connector.executor&quot;: &quot;Run&quot;,
+    &quot;Python.http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\phbru\PycharmProjects\HTTP-Server\backend" />
@@ -320,7 +320,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732542084061</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="- Tested MySQL connection with mysql.connector library">
+      <option name="closed" value="true" />
+      <created>1732919220251</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1732919220251</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -339,6 +347,7 @@
     <MESSAGE value="- small changes in the index.html file and added style index.css" />
     <MESSAGE value="- changes in views.py due to changes in index.html" />
     <MESSAGE value="- Small changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Small changes" />
+    <MESSAGE value="- Tested MySQL connection with mysql.connector library" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Tested MySQL connection with mysql.connector library" />
   </component>
 </project>
