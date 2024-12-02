@@ -168,7 +168,7 @@ def read(cursor, conn, table, printable=False):
     :param printable: prints out the rows
     :param cursor: -
     :param conn: -
-    :return:
+    :return: rows
     """
     cursor.execute(f"SELECT * FROM {table}")
     rows = cursor.fetchall()
@@ -192,12 +192,13 @@ def write(cursor, conn, table, value):
     for val in value:
         if validate(val, pos):
             logging.error("[write] Could not write data without creating duplicates.")
-            return
+            return False
         pos += 1
 
     cursor.execute(f"INSERT INTO {table} (username, email, password) VALUES (%s, %s, %s)", value)
     conn.commit()
     logging.info("[database_connector - write] Inserted data into the database.")
+    return True
 
 
 if __name__ == "__main__":
