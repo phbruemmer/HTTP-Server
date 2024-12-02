@@ -60,18 +60,68 @@ def validate(cursor, conn, value, position):
     :param cursor: -
     :param conn: -
     :param value: Value to look for in the db
-    :param position: column position (eg. username / email / password -> 0 / 1 / 2)
+    :param position: column position (eg. id / username / email / password -> 0 / 1 / 2 / 3)
     :return: True if item exists in the database.
     """
-    valid = False
+    valid_value = False
     cursor.execute("SELECT * FROM users")
     rows = cursor.fetchall()
-    print(rows)
     for row in rows:
-        if value in row[position]:
-            valid = True
-    return valid
+        if value == row[position]:
+            valid_value = True
+    return valid_value
 
+
+@connect
+def get_id(cursor, conn, table, column, value, cleaned=False, force_clean=False):
+    """
+    gets the id of a table entry in the database.
+    :param force_clean: returns first element
+    :param cleaned: cleans the output when set to true
+    :param cursor: -
+    :param conn: -
+    :param table: table name (string)
+    :param column: column name (string)
+    :param value: Value to look for
+    :return: id (integer)
+    """
+    query = f"SELECT id FROM {table} WHERE {column} = %s"
+    cursor.execute(query, (value,))
+
+    result = cursor.fetchall()
+    if result:
+        logging.info(f"[get_id] ID found: {result}")
+        if cleaned and not force_clean:
+            new_result = []
+            for i in result:
+                new_result.append(i[0])
+            result = new_result
+        if force_clean:
+            result = result[0][0]
+        return result
+    else:
+        logging.info(f"[get_id] No ID found.")
+        return None
+
+
+@connect
+def get_by_id(cursor, conn, table, entry_id):
+    """
+    :param cursor: -
+    :param conn: -
+    :param table: name of the table (string)
+    :param entry_id: id (integer)
+    :return: full entry from id
+    """
+    query = f"SELECT * FROM {table} WHERE id = %s"
+    cursor.execute(query, (entry_id,))
+    result = cursor.fetchone()
+    if result:
+        logging.info("[get_by_id] Entry found: %s", result[0])
+        return result
+    else:
+        logging.info("[get_by_id] No Entry found.")
+        return None
 
 
 @connect
@@ -84,6 +134,7 @@ def remove(cursor, conn, table, id_value):
     :param id_value: item id
     :return:
     """
+    done = False
     if table not in settings.allowed_tables:
         logging.error("[remove] Could not remove the table / items - Not in allowed list in settings.py")
         return
@@ -98,57 +149,62 @@ def remove(cursor, conn, table, id_value):
             query += " WHERE id = %s"
             cursor.execute(query, (id_value,))
         conn.commit()
+        done = True
     except mysql.connector.Error as e:
         logging.error("[remove] mysql error - No table / index found: %s", e)
         raise
     except Exception as e:
         logging.error("[remove] unexpected error: %s", e)
         raise
+    finally:
+        return done
 
 
 @connect
-def read(cursor, conn):
+def read(cursor, conn, table, printable=False):
     """
     Reads the users database table.
-    :param cursor:
-    :param conn:
+    :param table: table name (string)
+    :param printable: prints out the rows
+    :param cursor: -
+    :param conn: -
     :return:
     """
-    cursor.execute("SELECT * FROM users")
+    cursor.execute(f"SELECT * FROM {table}")
     rows = cursor.fetchall()
-    for row in rows:
-        print(f"[read] {row}")
+    if printable:
+        for row in rows:
+            print(f"[read] {row}")
     return rows
 
 
 @connect
-def write(cursor, conn, value):
+def write(cursor, conn, table, value):
     """
     Writes data into the users database table
-    :param value:
-    :param cursor:
-    :param conn:
+    :param table: table name in the database (string)
+    :param value: Value to add to the database (tuple)
+    :param cursor: -
+    :param conn: -
     :return:
     """
-    pos = 0
+    pos = 1
     for val in value:
         if validate(val, pos):
             logging.error("[write] Could not write data without creating duplicates.")
             return
         pos += 1
 
-    cursor.execute("INSERT INTO users (username, email, password) VALUES (%s, %s, %s)", value)
+    cursor.execute(f"INSERT INTO {table} (username, email, password) VALUES (%s, %s, %s)", value)
     conn.commit()
     logging.info("[database_connector - write] Inserted data into the database.")
 
 
 if __name__ == "__main__":
-    read()
-    write(("Test", "test@test.test", "test"))
-    write(("Test1", "test1@test.test", "test1"))
-    write(("Test2", "test2@test.test", "test2"))
-
-    remove("users", 1)
-
-    valid = validate("Test", 0)
-    print(valid)
+    write("users", ("test", "test@test.test", "test"))
+    exit_code = remove("users", get_id('users', 'username', 'test1', force_clean=True))
+    print(exit_code)
+    get_id(table="users", column="username", value="test")
+    test = get_by_id("users", 10)
+    # print(test)
+    valid = validate("Test", 1)

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Added connect -decorators to read and write functions&#10;- removed Database class for better decorator handling">
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Added allowed tables array to improve database safety">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/database_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/database_connector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -345,7 +344,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733079564505</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="- Added validate and remove function to the database_connector.py file&#10;- Modified write function to prevent duplicates">
+      <option name="closed" value="true" />
+      <created>1733166499345</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733166499345</updated>
+    </task>
+    <task id="LOCAL-00020" summary="- Added allowed tables array to improve database safety">
+      <option name="closed" value="true" />
+      <created>1733166528316</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733166528316</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -367,6 +382,8 @@
     <MESSAGE value="- Tested MySQL connection with mysql.connector library" />
     <MESSAGE value="- Small changes in the database_connector.py file for better DB handling in the future" />
     <MESSAGE value="- Added connect -decorators to read and write functions&#10;- removed Database class for better decorator handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added connect -decorators to read and write functions&#10;- removed Database class for better decorator handling" />
+    <MESSAGE value="- Added validate and remove function to the database_connector.py file&#10;- Modified write function to prevent duplicates" />
+    <MESSAGE value="- Added allowed tables array to improve database safety" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added allowed tables array to improve database safety" />
   </component>
 </project>
