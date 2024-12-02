@@ -6,3 +6,6 @@ In settings.py you can change IPs (e.g. Database / etc.)
 connection_routing = {
     'database': ('192.168.115.200', 1443),
 }
+
+
+allowed_tables = ['users']
