@@ -14,7 +14,7 @@ logging.basicConfig(
 )
 
 CONFIG = {
-    'host': 'localhost',
+    'host': settings.connection_routing['database'],
     'user': 'root',
     'password': '',
     'database': 'test',
