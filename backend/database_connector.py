@@ -54,17 +54,18 @@ def connect(function):
 
 
 @connect
-def validate(cursor, conn, value, position):
+def validate(cursor, conn, table, value, position):
     """
     Function to validate values in the database and check for duplicates.
     :param cursor: -
     :param conn: -
+    :param table: Name of the table (string)
     :param value: Value to look for in the db
     :param position: column position (eg. id / username / email / password -> 0 / 1 / 2 / 3)
     :return: True if item exists in the database.
     """
     valid_value = False
-    cursor.execute("SELECT * FROM users")
+    cursor.execute(f"SELECT * FROM {table}")
     rows = cursor.fetchall()
     for row in rows:
         if value == row[position]:
@@ -190,7 +191,7 @@ def write(cursor, conn, table, value):
     """
     pos = 1
     for val in value:
-        if validate(val, pos):
+        if validate(table, val, pos):
             logging.error("[write] Could not write data without creating duplicates.")
             return False
         pos += 1
@@ -208,5 +209,5 @@ if __name__ == "__main__":
     get_id(table="users", column="username", value="test")
     test = get_by_id("users", 10)
     # print(test)
-    valid = validate("Test", 1)
+    valid = validate("users", "Test", 1)
 
