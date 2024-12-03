@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Added allowed tables array to improve database safety">
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Added return statements to check the state of the execution (if the function was able to properly execute or not)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/database_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/database_connector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_http.py" beforeDir="false" afterPath="$PROJECT_DIR$/_http.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/files/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/files/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +66,7 @@
       <recent name="C:\Users\phbru\PycharmProjects\HTTP-Server\backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.database_connector">
+  <component name="RunManager" selected="Python._http (2)">
     <configuration name="_http (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HTTP-Server" />
       <option name="ENV_FILES" value="" />
@@ -176,8 +179,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.database_connector" />
         <item itemvalue="Python._http (2)" />
+        <item itemvalue="Python.database_connector" />
         <item itemvalue="Python._http (1)" />
         <item itemvalue="Python._http" />
         <item itemvalue="Python.http" />
@@ -360,7 +363,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733166528316</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="- Added get_id() function to get the id of an Entry in the database&#10;- Added get_by_id() function to get the Entry from the id&#10;- Added small but important features to improve code quality">
+      <option name="closed" value="true" />
+      <created>1733173765425</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1733173765425</updated>
+    </task>
+    <task id="LOCAL-00022" summary="- Added return statements to check the state of the execution (if the function was able to execute or not)">
+      <option name="closed" value="true" />
+      <created>1733173851215</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733173851215</updated>
+    </task>
+    <task id="LOCAL-00023" summary="- Added return statements to check the state of the execution (if the function was able to properly execute or not)">
+      <option name="closed" value="true" />
+      <created>1733173872618</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1733173872618</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -384,6 +411,9 @@
     <MESSAGE value="- Added connect -decorators to read and write functions&#10;- removed Database class for better decorator handling" />
     <MESSAGE value="- Added validate and remove function to the database_connector.py file&#10;- Modified write function to prevent duplicates" />
     <MESSAGE value="- Added allowed tables array to improve database safety" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added allowed tables array to improve database safety" />
+    <MESSAGE value="- Added get_id() function to get the id of an Entry in the database&#10;- Added get_by_id() function to get the Entry from the id&#10;- Added small but important features to improve code quality" />
+    <MESSAGE value="- Added return statements to check the state of the execution (if the function was able to execute or not)" />
+    <MESSAGE value="- Added return statements to check the state of the execution (if the function was able to properly execute or not)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added return statements to check the state of the execution (if the function was able to properly execute or not)" />
   </component>
 </project>

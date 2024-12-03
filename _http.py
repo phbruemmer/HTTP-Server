@@ -20,7 +20,7 @@ logging.basicConfig(
 class Server:
     # HOSTNAME = socket.gethostname()
     # HOST = socket.gethostbyname(HOSTNAME)
-    HOST = '0.0.0.0'
+    HOST = '192.168.115.200'
     PORT = 80
 
     BUFFER = 8192
