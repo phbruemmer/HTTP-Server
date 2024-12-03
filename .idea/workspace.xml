@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Added return statements to check the state of the execution (if the function was able to properly execute or not)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_http.py" beforeDir="false" afterPath="$PROJECT_DIR$/_http.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/files/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/database_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/database_connector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/files/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/files/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/views.py" afterDir="false" />
     </list>

@@ -24,8 +24,6 @@ def main(request):
 
 def register(request):
     args = {
-        'var_1': '',
-        'var_2': '',
         'var_3': 'Welcome!',
         'info': ''
     }
