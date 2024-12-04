@@ -12,13 +12,15 @@ logging.basicConfig(
 CODES = {
     200: '200 OK',
     404: '404 Not Found',
-    500: '500 Internal Server Error'
+    500: '500 Internal Server Error',
+    302: '302 Found'
 }
 
 
-def generate_response(code, server, full_path, close_connection, modified_file=None):
+def generate_response(code, server, full_path, close_connection, location=None, modified_file=None):
     """
     Generate an HTTP response based on the status code, server name, and requested file path.
+    :param location: URL to redirect to.
     :param modified_file: In case the file was internally modified you can add new file content in here.
     :param close_connection: True: close || False: keep-alive
     :param code: The HTTP status Code (e.g. 200, 400).
@@ -44,9 +46,15 @@ def generate_response(code, server, full_path, close_connection, modified_file=N
 
     file_size = len(file_content)
 
+    http_location = ""
+
+    if location:
+        http_location += location + "\r\n"
+
     headers = (f"HTTP/1.1 {CODES[code]}\r\n"
                f"Date: {formatted_time}\r\n"
                f"Server: {server}\r\n"
+               f"{http_location}"
                f"Content-Type: {content_type}; charset=UTF-8\r\n"
                f"Connection: {'close' if close_connection else 'keep-alive'}\r\n"
                f"Content-Length: {file_size}\r\n\r\n")
