@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Added return statements to check the state of the execution (if the function was able to properly execute or not)">
-      <change beforePath="$PROJECT_DIR$/backend/database_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/database_connector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/files/register.html" afterDir="false" />
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- removed unused statements">
+      <change afterPath="$PROJECT_DIR$/backend/redirect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DEFAULTS.py" beforeDir="false" afterPath="$PROJECT_DIR$/DEFAULTS.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -385,7 +386,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733173872618</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="- Small functionality changes in database_connector.py">
+      <option name="closed" value="true" />
+      <created>1733228720143</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1733228720143</updated>
+    </task>
+    <task id="LOCAL-00025" summary="- removed unused statements">
+      <option name="closed" value="true" />
+      <created>1733228731589</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1733228731589</updated>
+    </task>
+    <task id="LOCAL-00026" summary="- removed unused statements">
+      <option name="closed" value="true" />
+      <created>1733228748574</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1733228748574</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -412,6 +437,8 @@
     <MESSAGE value="- Added get_id() function to get the id of an Entry in the database&#10;- Added get_by_id() function to get the Entry from the id&#10;- Added small but important features to improve code quality" />
     <MESSAGE value="- Added return statements to check the state of the execution (if the function was able to execute or not)" />
     <MESSAGE value="- Added return statements to check the state of the execution (if the function was able to properly execute or not)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added return statements to check the state of the execution (if the function was able to properly execute or not)" />
+    <MESSAGE value="- Small functionality changes in database_connector.py" />
+    <MESSAGE value="- removed unused statements" />
+    <option name="LAST_COMMIT_MESSAGE" value="- removed unused statements" />
   </component>
 </project>

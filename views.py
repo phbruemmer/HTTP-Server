@@ -1,4 +1,4 @@
-from backend import render, request_handler, database_connector as dc
+from backend import render, request_handler, redirect, database_connector as dc
 import hashlib
 
 
@@ -15,7 +15,8 @@ def main(request):
         hash_object.update(params['password'].encode())
         hash_hex = hash_object.hexdigest()
         if user_id and dc.get_by_id('users', user_id)[3] == hash_hex:
-            return render.render(request, 'files/home.html', args)
+            return redirect.redirect('files/home.html', 'files/home.html')
+            # return render.render(request, 'files/home.html', args)
         else:
             args['var_3'] = 'Welcome!'
             args['info'] = '<b>Wrong credentials!</b>'
@@ -41,3 +42,10 @@ def register(request):
             return render.render(request, 'files/home.html', args)
 
     return render.render(request, 'files/register.html', args)
+
+
+def home(request):
+    args = {
+        'username': 'test',
+    }
+    return render.render('files/home.html', args)
