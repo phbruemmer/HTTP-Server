@@ -14,7 +14,7 @@ def render(request, path, args=None):
             else:
                 file_data = file_data.replace(target, '')
 
-    return DEFAULTS.generate_response(200, '0.0.0.0', path, True, modified_file=file_data)
+    return DEFAULTS.generate_response(200, full_path=path, close_connection=True, modified_file=file_data)
 
 
 if __name__ == '__main__':

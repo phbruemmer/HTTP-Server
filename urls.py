@@ -1,8 +1,9 @@
 import views
 
 URL_PATTERNS = {
-    '/index': views.main,
+    '/login': views.main,
     '/register': views.register,
+    '/home': views.home,
 }
 
 
