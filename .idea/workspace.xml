@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Added redirect testing&#10;- Not completely implemented as I previously intended">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DEFAULTS.py" beforeDir="false" afterPath="$PROJECT_DIR$/DEFAULTS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_http.py" beforeDir="false" afterPath="$PROJECT_DIR$/_http.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/redirect.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/redirect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/render.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/render.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

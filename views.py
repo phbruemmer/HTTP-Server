@@ -48,4 +48,4 @@ def home(request):
     args = {
         'username': 'test',
     }
-    return render.render('files/home.html', args)
+    return render.render(request, 'files/home.html', args)

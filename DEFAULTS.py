@@ -12,10 +12,31 @@ logging.basicConfig(
 CODES = {
     200: '200 OK',
     404: '404 Not Found',
+    418: "418 I'm a teapot",
     500: '500 Internal Server Error',
     301: '301 Moved Permanently',
-    302: '302 Found'
+    302: '302 Found',
 }
+
+
+def get_file_type(path):
+    mime_type, _ = mimetypes.guess_type(path)
+    content_type = mime_type or 'application/octet-stream'
+    content_type = f"Content-Type: {content_type}; charset=UTF-8\r\n"
+    return content_type
+
+
+def check_path(path, modified_file):
+    if not os.path.isfile(path):
+        logging.error(f"[generate_response] File not found: %s", path)
+        raise FileNotFoundError(f"[generate_response] File not found: {path}")
+    if modified_file is None:
+        with open(path, 'rb') as file:
+            file_content = file.read()
+    else:
+        file_content = modified_file.encode()
+    content_length = f"Content-Length: {len(file_content)}\r\n"
+    return file_content, content_length
 
 
 def generate_response(code, **kwargs):
@@ -38,35 +59,22 @@ def generate_response(code, **kwargs):
     current_time = datetime.now()
     formatted_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
 
-    if not os.path.isfile(full_path):
-        logging.error(f"[generate_response] File not found: %s", full_path)
-        raise FileNotFoundError(f"[generate_response] File not found: {full_path}")
+    file_content, content_length = check_path(full_path, modified_file) if full_path is not None else (b"", "")
+    content_type = get_file_type(full_path) if full_path else ""
 
-    mime_type, _ = mimetypes.guess_type(full_path)
-    content_type = mime_type or 'application/octet-stream'
-
-    if modified_file is None:
-        with open(full_path, 'rb') as file:
-            file_content = file.read()
-    else:
-        file_content = modified_file.encode()
-
-    file_size = len(file_content)
-
-    http_location = ""
-
-    if location:
-        http_location += f"Location: {location}\r\n"
+    http_location = f"Location: {location}\r\n" if location else ""
 
     headers = (f"HTTP/1.1 {CODES[code]}\r\n"
                f"Date: {formatted_time}\r\n"
                f"Server: {server}\r\n"
                f"{http_location}"
-               f"Content-Type: {content_type}; charset=UTF-8\r\n"
+               f"{content_type}"
                f"Connection: {'close' if close_connection else 'keep-alive'}\r\n"
-               f"Content-Length: {file_size}\r\n\r\n")
+               f"{content_length}"
+               f"\r\n")
+
     return headers + file_content.decode()
 
 
 if __name__ == "__main__":
-    print(generate_response(404, "Hans", 'files\\404.html', True))
+    print(generate_response(404, server="Hans", full_path='files\\404.html', close_connection=True))
