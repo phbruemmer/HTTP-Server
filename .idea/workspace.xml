@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- removed unused statements">
-      <change afterPath="$PROJECT_DIR$/backend/redirect.py" afterDir="false" />
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Added redirect testing&#10;- Not completely implemented as I previously intended">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DEFAULTS.py" beforeDir="false" afterPath="$PROJECT_DIR$/DEFAULTS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_http.py" beforeDir="false" afterPath="$PROJECT_DIR$/_http.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/redirect.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/redirect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/render.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/render.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -410,12 +413,26 @@
       <option name="project" value="LOCAL" />
       <updated>1733228748574</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="- Added new HTTP code (302)">
+      <option name="closed" value="true" />
+      <created>1733347310667</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1733347310667</updated>
+    </task>
+    <task id="LOCAL-00028" summary="- Added redirect testing&#10;- Not completely implemented as I previously intended">
+      <option name="closed" value="true" />
+      <created>1733347356607</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1733347356607</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- initial commit" />
-    <MESSAGE value="- Added css" />
     <MESSAGE value="- Added Connection to HTTP-response." />
     <MESSAGE value="- increased BUFFER and listener sizer.&#10;- Added infinity loop to accept connections.&#10;- Added receive_request function to receive the full request and reduce waiting time." />
     <MESSAGE value="- removed unused import" />
@@ -439,6 +456,8 @@
     <MESSAGE value="- Added return statements to check the state of the execution (if the function was able to properly execute or not)" />
     <MESSAGE value="- Small functionality changes in database_connector.py" />
     <MESSAGE value="- removed unused statements" />
-    <option name="LAST_COMMIT_MESSAGE" value="- removed unused statements" />
+    <MESSAGE value="- Added new HTTP code (302)" />
+    <MESSAGE value="- Added redirect testing&#10;- Not completely implemented as I previously intended" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added redirect testing&#10;- Not completely implemented as I previously intended" />
   </component>
 </project>

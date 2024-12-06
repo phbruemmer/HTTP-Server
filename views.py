@@ -15,7 +15,7 @@ def main(request):
         hash_object.update(params['password'].encode())
         hash_hex = hash_object.hexdigest()
         if user_id and dc.get_by_id('users', user_id)[3] == hash_hex:
-            return redirect.redirect('files/home.html', 'files/home.html')
+            return redirect.redirect('/home')
             # return render.render(request, 'files/home.html', args)
         else:
             args['var_3'] = 'Welcome!'
