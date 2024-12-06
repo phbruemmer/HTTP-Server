@@ -144,10 +144,10 @@ class Server:
             response = url_handler.handle(request)
         elif 'css' in request['headers']['Accept']:
             logging.info("[GET] adding css - 200 OK")
-            response = DEFAULTS.generate_response(200, self.HOST, os.path.join(self.DEFAULT_PATH, request['path'].lstrip('/')), True)
+            response = DEFAULTS.generate_response(200, server=self.HOST, full_path=os.path.join(self.DEFAULT_PATH, request['path'].lstrip('/')), close_connection=True)
         else:
             logging.info("[GET] No such path found - 404 Not Found.")
-            response = DEFAULTS.generate_response(404, self.HOST, os.path.join(self.DEFAULT_PATH, '404.html'), True)
+            response = DEFAULTS.generate_response(404, server=self.HOST, full_path=os.path.join(self.DEFAULT_PATH, '404.html'), close_connection=True)
         return response
 
     def receive_request(self, client):
@@ -188,7 +188,7 @@ class Server:
         except Exception as e:
             logging.error("[start] Unexpected error: %s", e)
             logging.error("[start] Unexpected error: 500 Internal Server Error")
-            response_500 = DEFAULTS.generate_response(500, self.HOST, 'files/500.html', True)
+            response_500 = DEFAULTS.generate_response(500, server=self.HOST, full_path='files/500.html', close_connection=True)
             self.send_response(client, response_500)
         finally:
             client.close()
