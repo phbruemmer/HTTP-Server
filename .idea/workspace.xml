@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- Added redirect testing&#10;- Not completely implemented as I previously intended">
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- After breaking and resetting the codebase, I rebuilt everything to this new standard, but I'm still not happy with the http response generator">
+      <change afterPath="$PROJECT_DIR$/backend/error_handling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DEFAULTS.py" beforeDir="false" afterPath="$PROJECT_DIR$/DEFAULTS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_http.py" beforeDir="false" afterPath="$PROJECT_DIR$/_http.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/render.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/render.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -423,11 +428,18 @@
       <option name="project" value="LOCAL" />
       <updated>1733347356607</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="- After breaking and resetting the codebase, I rebuilt everything to this new standard, but I'm still not happy with the http response generator">
+      <option name="closed" value="true" />
+      <created>1733522010494</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1733522010494</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added Connection to HTTP-response." />
     <MESSAGE value="- increased BUFFER and listener sizer.&#10;- Added infinity loop to accept connections.&#10;- Added receive_request function to receive the full request and reduce waiting time." />
     <MESSAGE value="- removed unused import" />
     <MESSAGE value="- temporarily fixed css rendering problem" />
@@ -452,6 +464,7 @@
     <MESSAGE value="- removed unused statements" />
     <MESSAGE value="- Added new HTTP code (302)" />
     <MESSAGE value="- Added redirect testing&#10;- Not completely implemented as I previously intended" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added redirect testing&#10;- Not completely implemented as I previously intended" />
+    <MESSAGE value="- After breaking and resetting the codebase, I rebuilt everything to this new standard, but I'm still not happy with the http response generator" />
+    <option name="LAST_COMMIT_MESSAGE" value="- After breaking and resetting the codebase, I rebuilt everything to this new standard, but I'm still not happy with the http response generator" />
   </component>
 </project>
