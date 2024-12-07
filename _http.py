@@ -3,7 +3,7 @@ import socket
 import logging
 import threading
 
-from backend import url_handler
+from backend import url_handler, error_handling
 
 import settings
 import DEFAULTS
@@ -152,11 +152,7 @@ class Server:
                                                   content_type=content_type)
         else:
             logging.info("[GET] No such path found - 404 Not Found.")
-            path = settings.DEFAULT_PATHS['404']
-            file_content = DEFAULTS.get_file_data(path)
-            content_type = DEFAULTS.get_file_type(path)
-            response = DEFAULTS.generate_response(404, server=self.HOST, file_content=file_content,
-                                                  content_type=content_type)
+            response = error_handling.render_error(self.HOST, 404)
         return response
 
     def receive_request(self, client):
@@ -197,12 +193,8 @@ class Server:
         except Exception as e:
             logging.error("[start] Unexpected error: %s", e)
             logging.error("[start] Unexpected error: 500 Internal Server Error")
-            server_error_file_path = settings.DEFAULT_PATHS['500']
-            file_content = DEFAULTS.get_file_data(server_error_file_path)
-            content_type = DEFAULTS.get_file_type(server_error_file_path)
-            response_500 = DEFAULTS.generate_response(500, server=self.HOST, file_content=file_content,
-                                                      content_type=content_type)
-            self.send_response(client, response_500)
+            response = error_handling.render_error(self.HOST, 500)
+            self.send_response(client, response)
         finally:
             client.close()
             with self.lock:
