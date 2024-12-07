@@ -3,6 +3,7 @@ import logging
 from datetime import datetime
 import mimetypes
 
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -26,41 +27,54 @@ def get_file_type(path):
     return content_type
 
 
-def check_path(path, modified_file):
-    if not os.path.isfile(path):
-        logging.error(f"[generate_response] File not found: %s", path)
-        raise FileNotFoundError(f"[generate_response] File not found: {path}")
-    if modified_file is None:
+def get_file_data(path):
+    try:
         with open(path, 'rb') as file:
             file_content = file.read()
-    else:
-        file_content = modified_file.encode()
-    content_length = f"Content-Length: {len(file_content)}\r\n"
-    return file_content, content_length
+        return file_content
+    except FileNotFoundError:
+        logging.error('[get_file_data] File not found %s', path)
+        raise
+    except PermissionError:
+        logging.error('[get_file_data] Permission denied: %s', path)
+        raise
+    except Exception as e:
+        logging.error('[get_file_data] Unexpected error with file %s: %s', (path, e))
+        raise
+
+
+def get_content_length(file_content):
+    return f"Content-Length: {len(file_content)}\r\n"
 
 
 def generate_response(code, **kwargs):
     """
     Generate an HTTP response based on the status code, server name, and requested file path.
     :param code: The HTTP status Code (e.g. 200, 400).
-    :param full_path: The full path to the file
-    :param location: URL to redirect to.
-    :param modified_file: In case the file was internally modified you can add new file content in here.
-    :param close_connection: True: close || False: keep-alive
     :param server: The server name or identifier
+    :param location: URL to redirect to.
+    :param file_content: binary content of the file
+    :param content_type: readable filetype of the HTTP response
+    :param close_connection: True: close || False: keep-alive
     :return: A string representing the complete HTTP response
     """
-    server = kwargs.get('server')
-    full_path = kwargs.get('full_path')
+    server = kwargs.get('server', 'Unkown Server')
     location = kwargs.get('location')
-    modified_file = kwargs.get('modified_file')
-    close_connection = kwargs.get('close_connection')
+    file_content = kwargs.get('file_content', b'')
+    content_type = kwargs.get('content_type', '')
+    close_connection = kwargs.get('close_connection', True)
+
+    # # # # # # # # # # # # #
+    # Checking for problems #
+    # # # # # # # # # # # # #
+
+    if code not in CODES:
+        raise ValueError(f"[generate_response] Invalid HTTP status code: {code}")
+    if file_content and not isinstance(file_content, bytes):
+        raise TypeError("file_content must be of type bytes")
 
     current_time = datetime.now()
     formatted_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
-
-    file_content, content_length = check_path(full_path, modified_file) if full_path is not None else (b"", "")
-    content_type = get_file_type(full_path) if full_path else ""
 
     http_location = f"Location: {location}\r\n" if location else ""
 
@@ -70,11 +84,6 @@ def generate_response(code, **kwargs):
                f"{http_location}"
                f"{content_type}"
                f"Connection: {'close' if close_connection else 'keep-alive'}\r\n"
-               f"{content_length}"
+               f"{get_content_length(file_content) if file_content else ""}"
                f"\r\n")
-
-    return headers + file_content.decode()
-
-
-if __name__ == "__main__":
-    print(generate_response(404, server="Hans", full_path='files\\404.html', close_connection=True))
+    return headers.encode() + file_content
