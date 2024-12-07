@@ -13,6 +13,5 @@ allowed_tables = ['users']
 DEFAULT_PATH = "files/"
 
 DEFAULT_PATHS = {
-    '404': os.path.join(DEFAULT_PATH, '404.html'),
-    '500': os.path.join(DEFAULT_PATH, '500.html')
+    'error_template': os.path.join(DEFAULT_PATH, 'error_template.html'),
 }

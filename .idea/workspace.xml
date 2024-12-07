@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- After breaking and resetting the codebase, I rebuilt everything to this new standard, but I'm still not happy with the http response generator">
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- the validate function has been changed to also take into account the column names in the database">
       <change afterPath="$PROJECT_DIR$/backend/error_handling.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEFAULTS.py" beforeDir="false" afterPath="$PROJECT_DIR$/DEFAULTS.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_http.py" beforeDir="false" afterPath="$PROJECT_DIR$/_http.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/render.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/render.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/500.html" beforeDir="false" afterPath="$PROJECT_DIR$/files/error_template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -436,17 +437,66 @@
       <option name="project" value="LOCAL" />
       <updated>1733522010494</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="- Changes due to changes in the http response generator function&#10;- Preparation for upcoming changes including error page rendering and css.">
+      <option name="closed" value="true" />
+      <created>1733607806343</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1733607806343</updated>
+    </task>
+    <task id="LOCAL-00031" summary="- Added more edge case handling&#10;- Modified the generator for more modularity and better readability">
+      <option name="closed" value="true" />
+      <created>1733607866161</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1733607866161</updated>
+    </task>
+    <task id="LOCAL-00032" summary="- Changed the return statement to work properly with the http response generator">
+      <option name="closed" value="true" />
+      <created>1733607923476</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1733607923476</updated>
+    </task>
+    <task id="LOCAL-00033" summary="- Added DEFAULT_PATHS for better readability and modularity in the codebase">
+      <option name="closed" value="true" />
+      <created>1733607952712</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1733607952712</updated>
+    </task>
+    <task id="LOCAL-00034" summary="- simplified the functions">
+      <option name="closed" value="true" />
+      <created>1733611541505</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1733611541505</updated>
+    </task>
+    <task id="LOCAL-00035" summary="- changed register view to improve the registration process">
+      <option name="closed" value="true" />
+      <created>1733611576602</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1733611576602</updated>
+    </task>
+    <task id="LOCAL-00036" summary="- the validate function has been changed to also take into account the column names in the database">
+      <option name="closed" value="true" />
+      <created>1733612606800</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1733612606800</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- increased BUFFER and listener sizer.&#10;- Added infinity loop to accept connections.&#10;- Added receive_request function to receive the full request and reduce waiting time." />
-    <MESSAGE value="- removed unused import" />
-    <MESSAGE value="- temporarily fixed css rendering problem" />
-    <MESSAGE value="- Fixed map_request() -method&#10;- HTTP requests can now handle more than 1 query parameter" />
-    <MESSAGE value="- Added POST case.&#10;- No changes to different file handling (still using only the path given by the HTTP request...)" />
-    <MESSAGE value="- Changed method to POST" />
-    <MESSAGE value="- Added request_handler.py for specific tasks related to the HTTP request." />
     <MESSAGE value="- removed secondary parameter from function call in url_handler.py&#10;- Changed the view to be able to handle POST requests." />
     <MESSAGE value="- small changes" />
     <MESSAGE value="- small changes in the index.html file and added style index.css" />
@@ -465,6 +515,13 @@
     <MESSAGE value="- Added new HTTP code (302)" />
     <MESSAGE value="- Added redirect testing&#10;- Not completely implemented as I previously intended" />
     <MESSAGE value="- After breaking and resetting the codebase, I rebuilt everything to this new standard, but I'm still not happy with the http response generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="- After breaking and resetting the codebase, I rebuilt everything to this new standard, but I'm still not happy with the http response generator" />
+    <MESSAGE value="- Changes due to changes in the http response generator function&#10;- Preparation for upcoming changes including error page rendering and css." />
+    <MESSAGE value="- Added more edge case handling&#10;- Modified the generator for more modularity and better readability" />
+    <MESSAGE value="- Changed the return statement to work properly with the http response generator" />
+    <MESSAGE value="- Added DEFAULT_PATHS for better readability and modularity in the codebase" />
+    <MESSAGE value="- simplified the functions" />
+    <MESSAGE value="- changed register view to improve the registration process" />
+    <MESSAGE value="- the validate function has been changed to also take into account the column names in the database" />
+    <option name="LAST_COMMIT_MESSAGE" value="- the validate function has been changed to also take into account the column names in the database" />
   </component>
 </project>
