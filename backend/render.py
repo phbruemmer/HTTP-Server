@@ -13,8 +13,9 @@ def render(request, path, args=None):
                 file_data = file_data.replace(target, args[argument])
             else:
                 file_data = file_data.replace(target, '')
+    content_type = DEFAULTS.get_file_type(path)
 
-    return DEFAULTS.generate_response(200, full_path=path, close_connection=True, modified_file=file_data)
+    return DEFAULTS.generate_response(200, file_content=file_data.encode(), content_type=content_type)
 
 
 if __name__ == '__main__':
