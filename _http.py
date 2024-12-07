@@ -5,8 +5,8 @@ import threading
 
 from backend import url_handler
 
+import settings
 import DEFAULTS
-
 
 TXT_LOG = False
 
@@ -18,18 +18,16 @@ logging.basicConfig(
 
 
 class Server:
-    # HOSTNAME = socket.gethostname()
-    # HOST = socket.gethostbyname(HOSTNAME)
     HOST = '192.168.115.200'
     PORT = 80
 
     BUFFER = 8192
 
-    DEFAULT_PATH = "files/"
+    DEFAULT_PATH = settings.DEFAULT_PATH
+
     LOG_FILE = "LOGS/HTTP_LOG.txt"
 
-    def __init__(self, server_files=None):
-        self.FILES = server_files or self.DEFAULT_PATH
+    def __init__(self):
         self.shutdown_event = threading.Event()
         self.lock = threading.Lock()
         self.request_count = 0
@@ -131,7 +129,7 @@ class Server:
         :return:
         """
         logging.info("[send_response] Sending response...")
-        client.send(response.encode())
+        client.send(response)
 
     def GET(self, request):
         """
@@ -143,11 +141,22 @@ class Server:
             logging.info("[GET] Path found - 200 OK")
             response = url_handler.handle(request)
         elif 'css' in request['headers']['Accept']:
+            """
+            UNSAFE CSS HANDLING
+            """
             logging.info("[GET] adding css - 200 OK")
-            response = DEFAULTS.generate_response(200, server=self.HOST, full_path=os.path.join(self.DEFAULT_PATH, request['path'].lstrip('/')), close_connection=True)
+            path = os.path.join(self.DEFAULT_PATH, request['path'].lstrip('/'))
+            file_content = DEFAULTS.get_file_data(path)
+            content_type = DEFAULTS.get_file_type(path)
+            response = DEFAULTS.generate_response(200, server=self.HOST, file_content=file_content,
+                                                  content_type=content_type)
         else:
             logging.info("[GET] No such path found - 404 Not Found.")
-            response = DEFAULTS.generate_response(404, server=self.HOST, full_path=os.path.join(self.DEFAULT_PATH, '404.html'), close_connection=True)
+            path = settings.DEFAULT_PATHS['404']
+            file_content = DEFAULTS.get_file_data(path)
+            content_type = DEFAULTS.get_file_type(path)
+            response = DEFAULTS.generate_response(404, server=self.HOST, file_content=file_content,
+                                                  content_type=content_type)
         return response
 
     def receive_request(self, client):
@@ -188,7 +197,11 @@ class Server:
         except Exception as e:
             logging.error("[start] Unexpected error: %s", e)
             logging.error("[start] Unexpected error: 500 Internal Server Error")
-            response_500 = DEFAULTS.generate_response(500, server=self.HOST, full_path='files/500.html', close_connection=True)
+            server_error_file_path = settings.DEFAULT_PATHS['500']
+            file_content = DEFAULTS.get_file_data(server_error_file_path)
+            content_type = DEFAULTS.get_file_type(server_error_file_path)
+            response_500 = DEFAULTS.generate_response(500, server=self.HOST, file_content=file_content,
+                                                      content_type=content_type)
             self.send_response(client, response_500)
         finally:
             client.close()
