@@ -37,9 +37,12 @@ def register(request):
             hash_object = hashlib.sha256()
             hash_object.update(params['password-0'].encode())
             hash_hex = hash_object.hexdigest()
-            code = dc.write('users', (params['username'], params['email'], hash_hex))
-            print(f"[register] database exit code {code}")
-            return render.render(request, 'files/home.html', args)
+
+            if dc.validate('users', params['username'], 1) and dc.validate('users', params['email'], 2):
+                dc.write('users', (params['username'], params['email'], hash_hex))
+                return redirect.redirect('/home')
+            else:
+                args['info'] = 'Account already exists.'
 
     return render.render(request, 'files/register.html', args)
 
