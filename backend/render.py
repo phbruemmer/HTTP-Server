@@ -1,7 +1,9 @@
 import DEFAULTS
 
 
-def render(request, path, args=None):
+def render(request, path, args=None, **kwargs):
+    host = kwargs.get('host')
+
     file_data = ''
     with open(path, 'r') as file:
         file_data += file.read()
@@ -15,7 +17,7 @@ def render(request, path, args=None):
                 file_data = file_data.replace(target, '')
     content_type = DEFAULTS.get_file_type(path)
 
-    return DEFAULTS.generate_response(200, file_content=file_data.encode(), content_type=content_type)
+    return DEFAULTS.generate_response(200, server=host, file_content=file_data.encode(), content_type=content_type)
 
 
 if __name__ == '__main__':
