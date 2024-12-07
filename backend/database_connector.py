@@ -54,7 +54,7 @@ def connect(function):
 
 
 @connect
-def validate(table, value, position, **kwargs):
+def validate(table, value, **kwargs):
     """
     Function to validate values in the database and check for duplicates.
     :param table: Name of the table (string)
@@ -63,14 +63,25 @@ def validate(table, value, position, **kwargs):
     :return: True if item exists in the database.
     """
     cursor = kwargs.get('cursor')
+    position = kwargs.get('position')
+    column_name = kwargs.get('column_name')
 
-    valid_value = False
     cursor.execute(f"SELECT * FROM {table}")
     rows = cursor.fetchall()
+
+    if position is None and column_name is None:
+        raise ValueError('[validate] Must provide either column_name or position.')
+
+    if column_name:
+        columns = [description[0] for description in cursor.description]
+        if column_name not in columns:
+            raise ValueError(f'[validate] "{column_name}" does not exist in table "{table}".')
+        position = columns.index(column_name)
+
     for row in rows:
         if value == row[position]:
-            valid_value = True
-    return valid_value
+            return True
+    return False
 
 
 @connect

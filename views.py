@@ -38,7 +38,7 @@ def register(request):
             hash_object.update(params['password-0'].encode())
             hash_hex = hash_object.hexdigest()
 
-            if dc.validate('users', params['username'], 1) and dc.validate('users', params['email'], 2):
+            if not all(dc.validate('users', params[field], column_name=field) for field in ['username', 'email']):
                 dc.write('users', (params['username'], params['email'], hash_hex))
                 return redirect.redirect('/home')
             else:
