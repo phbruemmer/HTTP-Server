@@ -63,6 +63,7 @@ def generate_response(code, **kwargs):
     file_content = kwargs.get('file_content', b'')
     content_type = kwargs.get('content_type', '')
     close_connection = kwargs.get('close_connection', True)
+    cookie = kwargs.get('cookie', '')
 
     # # # # # # # # # # # # #
     # Checking for problems #
@@ -79,6 +80,7 @@ def generate_response(code, **kwargs):
     headers = (f"HTTP/1.1 {CODES[code]}\r\n"
                f"Date: {formatted_time}\r\n"
                f"Server: {server}\r\n"
+               f"{cookie}"
                f"{f"Location: {location}\r\n" if location else ""}"
                f"{content_type}"
                f"Connection: {'close' if close_connection else 'keep-alive'}\r\n"
