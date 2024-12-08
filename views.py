@@ -15,7 +15,7 @@ def main(request):
         hash_object.update(params['password'].encode())
         hash_hex = hash_object.hexdigest()
         if user_id and dc.get_by_id('users', user_id)[3] == hash_hex:
-            return redirect.redirect('/home')
+            return redirect.redirect('/')
             # return render.render(request, 'files/home.html', args)
         else:
             args['var_3'] = 'Welcome!'
@@ -40,7 +40,7 @@ def register(request):
 
             if not all(dc.validate('users', params[field], column_name=field) for field in ['username', 'email']):
                 dc.write('users', (params['username'], params['email'], hash_hex))
-                return redirect.redirect('/home')
+                return redirect.redirect('/')
             else:
                 args['info'] = 'Account already exists.'
 
