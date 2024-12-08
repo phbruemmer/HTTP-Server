@@ -51,6 +51,7 @@ input:focus {
 
 button {
     background-color: #4a90e2;
+    margin-bottom: 20px;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -66,6 +67,12 @@ button:hover {
 }
 
 p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+a {
     margin-top: 15px;
     font-size: 14px;
     color: #666;
