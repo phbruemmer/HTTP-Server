@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- the validate function has been changed to also take into account the column names in the database">
-      <change afterPath="$PROJECT_DIR$/backend/error_handling.py" afterDir="false" />
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- removed hard coded error file paths and changed it to the error template">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_http.py" beforeDir="false" afterPath="$PROJECT_DIR$/_http.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/render.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/render.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/500.html" beforeDir="false" afterPath="$PROJECT_DIR$/files/error_template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -493,14 +487,42 @@
       <option name="project" value="LOCAL" />
       <updated>1733612606800</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="- removed hard coded error pages&#10;- Added error_template.html for more efficient error handling">
+      <option name="closed" value="true" />
+      <created>1733614355925</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1733614355925</updated>
+    </task>
+    <task id="LOCAL-00038" summary="- Added error_handling.py to handle the errors and add their own error messages if needed.">
+      <option name="closed" value="true" />
+      <created>1733614387670</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1733614387670</updated>
+    </task>
+    <task id="LOCAL-00039" summary="- Added host parameter in case the server header is needed">
+      <option name="closed" value="true" />
+      <created>1733614417489</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1733614417489</updated>
+    </task>
+    <task id="LOCAL-00040" summary="- removed hard coded error file paths and changed it to the error template">
+      <option name="closed" value="true" />
+      <created>1733614483335</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1733614483335</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- removed secondary parameter from function call in url_handler.py&#10;- Changed the view to be able to handle POST requests." />
-    <MESSAGE value="- small changes" />
-    <MESSAGE value="- small changes in the index.html file and added style index.css" />
-    <MESSAGE value="- changes in views.py due to changes in index.html" />
     <MESSAGE value="- Small changes" />
     <MESSAGE value="- Tested MySQL connection with mysql.connector library" />
     <MESSAGE value="- Small changes in the database_connector.py file for better DB handling in the future" />
@@ -522,6 +544,10 @@
     <MESSAGE value="- simplified the functions" />
     <MESSAGE value="- changed register view to improve the registration process" />
     <MESSAGE value="- the validate function has been changed to also take into account the column names in the database" />
-    <option name="LAST_COMMIT_MESSAGE" value="- the validate function has been changed to also take into account the column names in the database" />
+    <MESSAGE value="- removed hard coded error pages&#10;- Added error_template.html for more efficient error handling" />
+    <MESSAGE value="- Added error_handling.py to handle the errors and add their own error messages if needed." />
+    <MESSAGE value="- Added host parameter in case the server header is needed" />
+    <MESSAGE value="- removed hard coded error file paths and changed it to the error template" />
+    <option name="LAST_COMMIT_MESSAGE" value="- removed hard coded error file paths and changed it to the error template" />
   </component>
 </project>

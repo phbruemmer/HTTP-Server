@@ -1,9 +1,9 @@
+from backend import url_handler, error_handling
+
 import os.path
 import socket
 import logging
 import threading
-
-from backend import url_handler, error_handling
 
 import settings
 import DEFAULTS
