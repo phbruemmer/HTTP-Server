@@ -76,12 +76,10 @@ def generate_response(code, **kwargs):
     current_time = datetime.now()
     formatted_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
 
-    http_location = f"Location: {location}\r\n" if location else ""
-
     headers = (f"HTTP/1.1 {CODES[code]}\r\n"
                f"Date: {formatted_time}\r\n"
                f"Server: {server}\r\n"
-               f"{http_location}"
+               f"{f"Location: {location}\r\n" if location else ""}"
                f"{content_type}"
                f"Connection: {'close' if close_connection else 'keep-alive'}\r\n"
                f"{get_content_length(file_content) if file_content else ""}"

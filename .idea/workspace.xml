@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- removed hard coded error file paths and changed it to the error template">
+    <list default="true" id="b4cb0208-9a02-4a59-95a7-ba464f366313" name="Changes" comment="- just changed the import order">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DEFAULTS.py" beforeDir="false" afterPath="$PROJECT_DIR$/DEFAULTS.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -519,11 +520,18 @@
       <option name="project" value="LOCAL" />
       <updated>1733614483335</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="- just changed the import order">
+      <option name="closed" value="true" />
+      <created>1733617899320</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1733617899320</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Small changes" />
     <MESSAGE value="- Tested MySQL connection with mysql.connector library" />
     <MESSAGE value="- Small changes in the database_connector.py file for better DB handling in the future" />
     <MESSAGE value="- Added connect -decorators to read and write functions&#10;- removed Database class for better decorator handling" />
@@ -548,6 +556,7 @@
     <MESSAGE value="- Added error_handling.py to handle the errors and add their own error messages if needed." />
     <MESSAGE value="- Added host parameter in case the server header is needed" />
     <MESSAGE value="- removed hard coded error file paths and changed it to the error template" />
-    <option name="LAST_COMMIT_MESSAGE" value="- removed hard coded error file paths and changed it to the error template" />
+    <MESSAGE value="- just changed the import order" />
+    <option name="LAST_COMMIT_MESSAGE" value="- just changed the import order" />
   </component>
 </project>
