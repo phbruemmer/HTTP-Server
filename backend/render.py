@@ -18,11 +18,3 @@ def render(request, path, args=None, **kwargs):
     content_type = DEFAULTS.get_file_type(path)
 
     return DEFAULTS.generate_response(200, server=host, file_content=file_data.encode(), content_type=content_type)
-
-
-if __name__ == '__main__':
-    args_ = {
-        'var_1': 'Test 1',
-        'var_2': 'Test 2'
-    }
-    print(render('Hans', 'C:\\Users\\phbru\\PycharmProjects\\HTTP-Server\\files\\index.html', args_))

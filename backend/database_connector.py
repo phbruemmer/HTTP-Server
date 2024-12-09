@@ -101,19 +101,18 @@ def get_id(table, column, value, cleaned=False, force_clean=False, **kwargs):
     cursor.execute(query, (value,))
 
     result = cursor.fetchall()
-    if result:
-        logging.info(f"[get_id] ID found: {result}")
-        if cleaned and not force_clean:
-            new_result = []
-            for i in result:
-                new_result.append(i[0])
-            result = new_result
-        if force_clean:
-            result = result[0][0]
-        return result
-    else:
+    if not result:
         logging.info(f"[get_id] No ID found.")
         return None
+    logging.info(f"[get_id] ID found: {result}")
+    if cleaned and not force_clean:
+        new_result = []
+        for i in result:
+            new_result.append(i[0])
+        result = new_result
+    if force_clean:
+        result = result[0][0]
+    return result
 
 
 @connect
