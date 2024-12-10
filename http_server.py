@@ -1,4 +1,4 @@
-from backend import url_handler, error_handling
+from backend import url_handler, error_handling, DEFAULTS
 
 import os.path
 import socket
@@ -6,7 +6,6 @@ import logging
 import threading
 
 import settings
-import DEFAULTS
 
 TXT_LOG = False
 
@@ -18,26 +17,27 @@ logging.basicConfig(
 
 
 class Server:
-    HOST = '192.168.115.200'
-    PORT = 80
-
     BUFFER = 8192
 
     DEFAULT_PATH = settings.DEFAULT_PATH
 
     LOG_FILE = "LOGS/HTTP_LOG.txt"
 
-    def __init__(self):
+    def __init__(self, HOST, PORT):
+        self.HOST = HOST
+        self.PORT = PORT
         self.shutdown_event = threading.Event()
         self.lock = threading.Lock()
         self.request_count = 0
+        self.server_thread = None
 
-    def start(self):
+    def start_server(self):
         """
         starts the HTTP server.
         :return: None
         """
         logging.info("[start] Starting server on %s:%d ...", self.HOST, self.PORT)
+        sock = None
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
                 sock.bind((self.HOST, self.PORT))
@@ -45,40 +45,53 @@ class Server:
                 self.accept(sock)
         except socket.timeout:
             logging.error("[start] Connection timed out.")
+            raise
         except socket.error as e:
             logging.error("[start] Socket error: %s", e)
             raise
+        except KeyboardInterrupt:
+            logging.info("[start_server] Keyboard Interrupt - Shutting down server.")
+            self.stop_server(sock)
         except Exception as e:
             logging.error("[start] Unexpected error: %s", e)
             raise
         finally:
-            logging.error("[start] Shutting down server")
-            self.stop_server(sock)
+            logging.info("[start] Server offline.")
 
     def stop_server(self, sock):
         """
-        Stops the server and closes the socket.
-        :param sock: Socket Object
-        :return:
+        Gracefully stops the server and closes all resources.
+        :param sock: Server socket
+        :return: None
         """
-        logging.info("[stop_server] Shutting down server...")
+        logging.info("[stop_server] Initiating server shutdown...")
         self.shutdown_event.set()
         sock.close()
+        logging.info("[stop_server] Server socket closed.")
+        if self.server_thread is not None:
+            self.server_thread.join()
+            logging.info("[stop_server] Server thread joined.")
+        logging.info("[stop_server] Server shut down gracefully.")
 
     def accept(self, sock):
         """
-        Accepts the connection from the client.
+        Accepts connections from clients and starts a new thread to handle each connection.
         :param sock: Socket from socket.socket(ipv4, TCP)
-        :return:
+        :return: None
         """
         while not self.shutdown_event.is_set():
             try:
+                sock.settimeout(1.0)
                 client_sock, client_addr = sock.accept()
                 logging.info("[accept] %s successfully connected.", client_addr)
-                threading.Thread(target=self.get_request, args=(client_sock,), daemon=True).start()
+                thread = threading.Thread(target=self.get_request, args=(client_sock,), daemon=True)
+                thread.start()
+            except socket.timeout:
+                continue
             except OSError as e:
-                logging.info("[accept] OSError - Likely due to socket closure: %s", e)
+                logging.error("[accept] OSError - Likely due to socket closure: %s", e)
                 break
+
 
     def map_request(self, request):
         """
@@ -201,6 +214,5 @@ class Server:
                 logging.info("[get_request] finished processing request #%s", self.request_count)
 
 
-if __name__ == "__main__":
-    server = Server()
-    server.start()
+if __name__ == '__main__':
+    Server('192.168.115.200', 80).start_server()
