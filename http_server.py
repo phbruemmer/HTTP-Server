@@ -19,8 +19,6 @@ logging.basicConfig(
 class Server:
     BUFFER = 8192
 
-    DEFAULT_PATH = settings.DEFAULT_PATH
-
     LOG_FILE = "LOGS/HTTP_LOG.txt"
 
     def __init__(self, HOST, PORT):
@@ -92,7 +90,6 @@ class Server:
                 logging.error("[accept] OSError - Likely due to socket closure: %s", e)
                 break
 
-
     def map_request(self, request):
         """
         Converts HTTP request to hashmap for better processing.
@@ -158,7 +155,7 @@ class Server:
             UNSAFE CSS HANDLING
             """
             logging.info("[GET] adding css - 200 OK")
-            path = os.path.join(self.DEFAULT_PATH, request['path'].lstrip('/'))
+            path = os.path.join(settings.DEFAULT_STATIC_FILE_PATH, request['path'].lstrip('/'))
             file_content = DEFAULTS.get_file_data(path)
             content_type = DEFAULTS.get_file_type(path)
             response = DEFAULTS.generate_response(200, server=self.HOST, file_content=file_content,
