@@ -10,7 +10,8 @@ connection_routing = {
 
 allowed_tables = ['users']
 
-DEFAULT_PATH = "files/"
+DEFAULT_PATH = "HTML_files/"
+DEFAULT_STATIC_FILE_PATH = "static_files/"
 
 DEFAULT_PATHS = {
     'error_template': os.path.join(DEFAULT_PATH, 'error_template.html'),

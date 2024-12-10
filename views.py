@@ -16,11 +16,11 @@ def main(request):
         hash_hex = hash_object.hexdigest()
         if user_id and dc.get_by_id('users', user_id)[3] == hash_hex:
             return redirect.redirect('/')
-            # return render.render(request, 'files/home.html', args)
+            # return render.render(request, 'HTML_files/home.html', args)
         else:
             args['var_3'] = 'Welcome!'
             args['info'] = '<b>Wrong credentials!</b>'
-    return render.render(request, 'files/index.html', args)
+    return render.render(request, 'HTML_files/index.html', args)
 
 
 def register(request):
@@ -44,11 +44,11 @@ def register(request):
             else:
                 args['info'] = 'Account already exists.'
 
-    return render.render(request, 'files/register.html', args)
+    return render.render(request, 'HTML_files/register.html', args)
 
 
 def home(request):
     args = {
         'username': 'test',
     }
-    return render.render(request, 'files/home.html', args)
+    return render.render(request, 'HTML_files/home.html', args)

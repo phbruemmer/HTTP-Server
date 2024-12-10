@@ -1,4 +1,4 @@
-import DEFAULTS
+from backend import DEFAULTS
 
 
 def render(request, path, args=None, **kwargs):
