@@ -12,6 +12,7 @@ logging.basicConfig(
 
 CODES = {
     200: '200 OK',
+    403: '403 Forbidden',
     404: '404 Not Found',
     418: "418 I'm a teapot",
     500: '500 Internal Server Error',
