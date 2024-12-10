@@ -2,10 +2,9 @@ import urls
 
 
 def check_urls(url):
-    valid = False
     if url in urls.URL_PATTERNS:
-       valid = True
-    return valid
+        return True
+    return False
 
 
 def handle(request):
