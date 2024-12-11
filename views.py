@@ -43,7 +43,6 @@ def register(request):
                 return redirect.redirect('/')
             else:
                 args['info'] = 'Account already exists.'
-
     return render.render(request, 'HTML_files/register.html', args)
 
 
