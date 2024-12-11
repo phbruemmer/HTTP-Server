@@ -1,11 +1,7 @@
-from backend import url_handler, error_handling, DEFAULTS
-
-import os.path
+from backend import url_handler, error_handling
 import socket
 import logging
 import threading
-
-import settings
 
 TXT_LOG = False
 
@@ -150,16 +146,10 @@ class Server:
         if url_handler.check_urls(request['path']) and 'html' in request['headers']['Accept']:
             logging.info("[GET] Path found - 200 OK")
             response = url_handler.handle(request)
-        elif 'css' in request['headers']['Accept']:
-            """
-            UNSAFE CSS HANDLING
-            """
+        elif 'css' in request['headers']['Accept'] and url_handler.get_statics(request) is not None:
             logging.info("[GET] adding css - 200 OK")
-            path = os.path.join(settings.DEFAULT_STATIC_FILE_PATH, request['path'].lstrip('/'))
-            file_content = DEFAULTS.get_file_data(path)
-            content_type = DEFAULTS.get_file_type(path)
-            response = DEFAULTS.generate_response(200, server=self.HOST, file_content=file_content,
-                                                  content_type=content_type)
+            path = url_handler.get_statics(request)     # For safe file handling
+            response = url_handler.handle_statics(self.HOST, path)
         else:
             logging.info("[GET] No such path found - 404 Not Found.")
             response = error_handling.render_error(self.HOST, 404)
