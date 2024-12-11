@@ -1,4 +1,3 @@
-import os.path
 import logging
 from datetime import datetime
 import mimetypes
@@ -19,6 +18,8 @@ CODES = {
     301: '301 Moved Permanently',
     302: '302 Found',
 }
+
+STATIC = "backend/STATIC_FILES"
 
 
 def get_file_type(path):
