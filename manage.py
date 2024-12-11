@@ -52,6 +52,9 @@ def runserver(arguments):
 def main():
     arguments = sys.argv
 
+    if not len(arguments) > 1:
+        return
+
     match arguments[1]:
         case 'runserver':
             runserver(arguments)
