@@ -1,10 +1,29 @@
 import os.path
+import re
 import http_server
 import socket
 import shutil
 import settings
 import logging
 import sys
+
+
+def clean_name(function):
+    def wrapper(*args):
+        name = re.sub('[^A-Za-z0-9]+', '', str(args[0]))
+        function(name=name, arguments=args)
+
+    return wrapper
+
+
+def copy(origin, destination):
+    for item in os.listdir(origin):
+        source_item = os.path.join(origin, item)
+        destination_item = os.path.join(destination, item)
+        if os.path.isdir(source_item):
+            shutil.copytree(source_item, destination_item)
+        else:
+            shutil.copy2(source_item, destination_item)
 
 
 def update_statics():
@@ -22,14 +41,7 @@ def update_statics():
                     shutil.rmtree(file_path)
             except Exception:
                 logging.error("[update] Unexpected error while removing static files.")
-
-        for item in os.listdir(settings.DEFAULT_STATIC_FILE_PATH):
-            source_item = os.path.join(settings.DEFAULT_STATIC_FILE_PATH, item)
-            destination_item = os.path.join(STATIC, item)
-            if os.path.isdir(source_item):
-                shutil.copytree(source_item, destination_item)
-            else:
-                shutil.copy2(source_item, destination_item)
+        copy(settings.DEFAULT_STATIC_FILE_PATH, STATIC)
         logging.info("[update] successfully updated static file system.")
     except FileNotFoundError as e:
         logging.error("[update] Could not find file: %s", e)
@@ -39,19 +51,27 @@ def update_statics():
         raise
 
 
-def add_app(name):
-    if os.path.exists(name):
-        logging.error("[add] Can not overwrite existing apps.")
+@clean_name
+def add_app(**kwargs):
+    NEW_APP_PATH = kwargs.get('name')
+    DEFAULT_VIEW_PATH = "backend/view_template"
+
+    if os.path.exists(NEW_APP_PATH):
+        logging.error("[add_app] Can not overwrite existing apps. Delete or choose a new name for your app.")
         return
-    #                                         #
-    # COPY VIEW FILES TO THE CORRECT LOCATION #
-    #                                         #
+    try:
+        os.mkdir(NEW_APP_PATH)
+        copy(DEFAULT_VIEW_PATH, NEW_APP_PATH)
+        logging.info("[update] successfully added new app.")
+    except Exception as e:
+        logging.error("[add_app] Unexpected error: %s", e)
+        raise
 
 
 def update(arguments):
     match arguments[2]:
         case 'statics':
-           update_statics()
+            update_statics()
 
 
 def runserver(arguments):
@@ -65,12 +85,10 @@ def runserver(arguments):
 def add(arguments):
     match arguments[2]:
         case 'app':
-            if not len(arguments) == 3:
+            if not len(arguments) == 4:
                 logging.error("[add] Can not add an app without a name.")
                 return
             add_app(arguments[3])
-
-
 
 
 def main():
@@ -84,6 +102,8 @@ def main():
             runserver(arguments)
         case 'update':
             update(arguments)
+        case 'add':
+            add(arguments)
 
 
 if __name__ == '__main__':
