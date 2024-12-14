@@ -1,8 +1,8 @@
 from backend.router import path, include
+from loginApp import urls as login_urls
 import views
 
 URL_PATTERNS = [
-    path('/login', views.main),
-    path('/register', views.register),
-    path('/', views.home)
+    path('/', views.home),
+    path('/account/', include(login_urls))
 ]

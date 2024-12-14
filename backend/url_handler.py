@@ -10,7 +10,6 @@ def handle(request):
 
 def get_statics(request):
     file_path = os.path.join(DEFAULTS.STATIC, request['path'].lstrip('/'))
-
     try:
         if os.path.abspath(file_path).startswith(os.path.abspath(DEFAULTS.STATIC)) and os.path.isfile(file_path):
             return file_path

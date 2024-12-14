@@ -16,6 +16,7 @@ class Router:
     def resolve(self, pattern, request=None):
         logging.info("[resolve] Trying to resolve %s", pattern)
         for route in self.routes:
+            print(route.pattern)
             if route.pattern == pattern:
                 logging.info("[resolve] Pattern found - Executing view function...")
                 return route.view(request)
@@ -34,11 +35,10 @@ def path(pattern, view, name=None):
     return Route(pattern, view, name)
 
 
-def include(paths):
+def include(app):
     """
     This function returns the paths of other urls.py files
-    :param paths:
+    :param app:
     :return:
     """
-    pass
-
+    return app.URL_PATTERNS

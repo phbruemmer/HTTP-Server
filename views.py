@@ -20,7 +20,7 @@ def main(request):
         else:
             args['var_3'] = 'Welcome!'
             args['info'] = '<b>Wrong credentials!</b>'
-    return render.render(request, 'HTML_files/index.html', args)
+    return render.render(request, 'loginApp/HTML_files/index.html', args)
 
 
 def register(request):
@@ -43,7 +43,7 @@ def register(request):
                 return redirect.redirect('/')
             else:
                 args['info'] = 'Account already exists.'
-    return render.render(request, 'HTML_files/register.html', args)
+    return render.render(request, 'loginApp/HTML_files/register.html', args)
 
 
 def home(request):
