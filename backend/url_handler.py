@@ -1,18 +1,11 @@
-from backend import DEFAULTS
+from backend import DEFAULTS, router
 import logging
 import os.path
 import urls
 
 
-def check_urls(url):
-    if url in urls.URL_PATTERNS:
-        return True
-    return False
-
-
 def handle(request):
-    response = urls.URL_PATTERNS[request['path']](request)
-    return response
+    return router.Router(urls.URL_PATTERNS).resolve(request['path'], request)
 
 
 def get_statics(request):

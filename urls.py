@@ -1,12 +1,8 @@
+from backend.router import path, include
 import views
 
-URL_PATTERNS = {
-    '/login': views.main,
-    '/register': views.register,
-    '/': views.home,
-}
-
-
-if __name__ == "__main__":
-    var = URL_PATTERNS['/index']('nothing')
-    print(var)
+URL_PATTERNS = [
+    path('/login', views.main),
+    path('/register', views.register),
+    path('/', views.home)
+]
