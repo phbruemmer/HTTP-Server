@@ -4,5 +4,5 @@ import views
 
 URL_PATTERNS = [
     path('/', views.home),
-    path('/account/', include(login_urls))
+    path('/account', include(login_urls))
 ]

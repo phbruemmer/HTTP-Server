@@ -5,6 +5,7 @@ def render(request, path, args=None, **kwargs):
     host = kwargs.get('host')
 
     file_data = ''
+
     with open(path, 'r') as file:
         file_data += file.read()
 
