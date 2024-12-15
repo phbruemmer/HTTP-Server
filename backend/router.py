@@ -1,3 +1,4 @@
+import views
 from backend import error_handling
 import logging
 
@@ -11,7 +12,25 @@ class Route:
 
 class Router:
     def __init__(self, routes):
-        self.routes = routes
+        self.routes = self.flatten_routes(routes)
+
+    def flatten_routes(self, routes, prefix=""):
+        """
+        Flattens the routes to include paths from different apps
+        :param routes: URL_PATTERNS List
+        :param prefix: needed for recursive function calls (keep default)
+        :return:
+        """
+        logging.info("[flatten_routes] flattening routes...")
+        flat_routes = []
+        for route in routes:
+            if isinstance(route.view, list):
+                prefixed_routes = self.flatten_routes(route.view, prefix + route.pattern)
+                flat_routes.extend(prefixed_routes)
+            else:
+                flat_routes.append(Route(prefix + route.pattern, route.view, route.name))
+        logging.info("[flatten_routes] routes flattened.")
+        return flat_routes
 
     def resolve(self, pattern, request=None):
         logging.info("[resolve] Trying to resolve %s", pattern)
