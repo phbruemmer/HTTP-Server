@@ -35,7 +35,6 @@ class Router:
     def resolve(self, pattern, request=None):
         logging.info("[resolve] Trying to resolve %s", pattern)
         for route in self.routes:
-            print(route.pattern)
             if route.pattern == pattern:
                 logging.info("[resolve] Pattern found - Executing view function...")
                 return route.view(request)
