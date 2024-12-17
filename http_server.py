@@ -119,7 +119,7 @@ class Server:
 
         try:
             request = http_mapper.map_request(request_data)
-            match request["method"]:
+            match request.get('method'):
                 case 'GET':
                     response = GET.GET(self.HOST, request)
                 case 'POST':
