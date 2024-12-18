@@ -4,12 +4,22 @@ In settings.py you can change IPs (e.g. Database / etc.)
 """
 import os
 
+# List of all available apps to update in-app static files
+# (note that the DEFAULT_STATIC_FILE_PATH must be the same)
+apps = [
+    'main',
+    'loginApp',
+]
+
+# Database routing
 connection_routing = {
     'database': 'localhost',
 }
 
+# to prevent unwanted database operations
 allowed_tables = ['users']
 
+# Default paths
 DEFAULT_PATH = "HTML_files/"
 DEFAULT_STATIC_FILE_PATH = "static_files/"
 

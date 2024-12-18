@@ -34,6 +34,7 @@ class Router:
         logging.info("[flatten_routes] routes flattened.")
         return flat_routes
 
+
     def resolve(self, pattern, request=None):
         """
         Tries to find a pattern (pattern parameter) in the flattened URL vector.
