@@ -17,6 +17,12 @@ def clean_name(function):
 
 
 def copy(origin, destination):
+    """
+    responsible for copying files from origin to destination.
+    :param origin: string -> origin path
+    :param destination: string -> destination path
+    :return:
+    """
     if not os.path.exists(origin):
         logging.error("[copy] Can not copy from or to unknown locations.")
         return
@@ -37,13 +43,20 @@ def copy(origin, destination):
 
 
 def copy_all_statics():
+    """
+    copies all static files including those that are included in previously added apps.
+    :return:
+    """
     logging.info("[copy_all_statics] copying static files.")
     if os.path.exists(settings.DEFAULT_STATIC_FILE_PATH):
+        # Copies static files from the content root
         copy(settings.DEFAULT_STATIC_FILE_PATH, DEFAULTS.STATIC)
         logging.info("[copy_all_statics] root directory static file copied over to local static file directory.")
 
     for app in settings.apps:
+        # Iterates through the settings.apps vector to get all allowed apps
         try:
+            # Tries to copy static files from that current app
             origin = os.path.join(app, settings.DEFAULT_STATIC_FILE_PATH)
             destination = os.path.join(DEFAULTS.STATIC, app)
             copy(origin, destination)
@@ -88,15 +101,23 @@ def update_statics():
 
 @clean_name
 def add_app(**kwargs):
+    """
+    Adds app to the content root.
+    This function copies the app_template directory into the content root directory (with a different name)
+    :param kwargs:
+    :return:
+    """
     NEW_APP_PATH = kwargs.get('name')
-    DEFAULT_VIEW_PATH = "backend/view_template"
+    DEFAULT_APP_PATH = "backend/app_template"
 
     if os.path.exists(NEW_APP_PATH):
         logging.error("[add_app] Can not overwrite existing apps. Delete or choose a new name for your app.")
         return
     try:
+        # creates new directory
         os.mkdir(NEW_APP_PATH)
-        copy(DEFAULT_VIEW_PATH, NEW_APP_PATH)
+        # copies files from the DEFAULT_APP_PATH
+        copy(DEFAULT_APP_PATH, NEW_APP_PATH)
         logging.info("[update] successfully added new app.")
     except Exception as e:
         logging.error("[add_app] Unexpected error: %s", e)
@@ -104,12 +125,22 @@ def add_app(**kwargs):
 
 
 def update(arguments):
+    """
+    updates locally saved directories in the backend (e.g. static files)
+    :param arguments:
+    :return:
+    """
     match arguments[2]:
         case 'statics':
             update_statics()
 
 
 def runserver(arguments):
+    """
+    Starts the server using the IP and PORT given by the user (if no value it'll start on default settings)
+    :param arguments:
+    :return:
+    """
     HOST = socket.gethostbyname(socket.gethostname())
     PORT = 80
     if len(arguments) == 3:
@@ -129,7 +160,7 @@ def add(arguments):
 def main():
     arguments = sys.argv
 
-    if not len(arguments) > 1:
+    if len(arguments) < 1:
         return
 
     match arguments[1]:
