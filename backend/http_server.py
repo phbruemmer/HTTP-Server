@@ -16,7 +16,7 @@ logging.basicConfig(
 class Server:
     BUFFER = 8192
 
-    LOG_FILE = "LOGS/HTTP_LOG.txt"
+    LOG_FILE = "../LOGS/HTTP_LOG.txt"
 
     def __init__(self, HOST, PORT):
         self.HOST = HOST
