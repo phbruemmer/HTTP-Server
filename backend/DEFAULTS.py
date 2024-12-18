@@ -9,6 +9,8 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
+
+# Current Default HTTP codes
 CODES = {
     200: '200 OK',
     403: '403 Forbidden',
@@ -23,6 +25,11 @@ STATIC = "backend/STATIC_FILES"
 
 
 def get_file_type(path):
+    """
+    Gets the mine_type of a file
+    :param path: string (path of the file)
+    :return:
+    """
     mime_type, _ = mimetypes.guess_type(path)
     content_type = mime_type or 'application/octet-stream'
     content_type = f"Content-Type: {content_type}; charset=UTF-8\r\n"
@@ -30,6 +37,11 @@ def get_file_type(path):
 
 
 def get_file_data(path):
+    """
+    Reads the file and returns its content
+    :param path: string (path of the file)
+    :return:
+    """
     try:
         with open(path, 'rb') as file:
             file_content = file.read()
@@ -51,7 +63,7 @@ def get_content_length(file_content):
 
 def generate_response(code, **kwargs):
     """
-    Generate an HTTP response based on the status code, server name, and requested file path.
+    Generates an HTTP response based on the status code, server name, and requested file path.
     :param code: The HTTP status Code (e.g. 200, 400).
     :param server: The server name or identifier
     :param location: URL to redirect to.
@@ -79,6 +91,7 @@ def generate_response(code, **kwargs):
     current_time = datetime.now()
     formatted_time = current_time.strftime("%a, %d %b %Y %H:%M:%S GMT")
 
+    # assembles HTTP header
     headers = (f"HTTP/1.1 {CODES[code]}\r\n"
                f"Date: {formatted_time}\r\n"
                f"Server: {server}\r\n"
