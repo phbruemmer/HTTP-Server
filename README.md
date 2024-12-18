@@ -36,6 +36,11 @@ Follow these steps to create your first working view:
   - *'render.render()'* returns an HTTP response with all the information needed to display the HTML file.
   - the view returns this value to the HTTP server, which sends the encrypted (not secure) response to the browser via the TCP protocol
 
+## Important
+For example, if you are trying to render a specific HTML file, always use the path from the root directory.
+(The default content directory is set to the file you are running, usually manage.py in the root directory).
+
+
 ## Example View
     from backend import render
 
