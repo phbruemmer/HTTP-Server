@@ -8,5 +8,11 @@ DEFAULT_MESSAGES = {
 
 
 def render_error(host, code):
+    """
+    renders an error page
+    :param host: string (HOST computer)
+    :param code: int (e.g. 404)
+    :return:
+    """
     path = settings.DEFAULT_PATHS['error_template']
     return render.render(request=None, path=path, args=DEFAULT_MESSAGES[code], host=host)

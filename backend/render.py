@@ -5,6 +5,14 @@ import settings
 
 
 def render(request, path, args=None, **kwargs):
+    """
+    renders the file (from path parameter) and changes given arguments to the given value (including template code)
+    :param request: string (HTTP request)
+    :param path: string (file path)
+    :param args: dictionary (variable_name : value)
+    :param kwargs:
+    :return:
+    """
     host = kwargs.get('host')
 
     file_data = ''
@@ -27,6 +35,12 @@ def render(request, path, args=None, **kwargs):
 
 
 def methods(method, content):
+    """
+    Handles the different methods in the HTML
+    :param method: string
+    :param content: value from the template code
+    :return: processed value
+    """
     value = ''
 
     match method:
@@ -36,6 +50,11 @@ def methods(method, content):
 
 
 def find_template_code(document):
+    """
+    Finds template code in the HTML and overwrites it with new values. (e.g. {% static 'file/path.css' %})
+    :param document: file content
+    :return: new document content
+    """
     parts = re.findall(r"{%.*?%}", document)
     for part in parts:
         separator = part.split(' ')

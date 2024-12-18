@@ -1,9 +1,11 @@
-import views
 from backend import error_handling
 import logging
 
 
 class Route:
+    """
+    Route class to create single route objects for URL patterns
+    """
     def __init__(self, pattern, view, name=None):
         self.pattern = pattern
         self.view = view
@@ -16,7 +18,7 @@ class Router:
 
     def flatten_routes(self, routes, prefix=""):
         """
-        Flattens the routes to include paths from different apps
+        Flattens the routes to include paths from different apps.
         :param routes: URL_PATTERNS List
         :param prefix: needed for recursive function calls (keep default)
         :return:
@@ -33,6 +35,12 @@ class Router:
         return flat_routes
 
     def resolve(self, pattern, request=None):
+        """
+        Tries to find a pattern (pattern parameter) in the flattened URL vector.
+        :param pattern: string
+        :param request: string (default None)
+        :return:
+        """
         logging.info("[resolve] Trying to resolve %s", pattern)
         for route in self.routes:
             if route.pattern == pattern:
@@ -44,7 +52,7 @@ class Router:
 
 def path(pattern, view, name=None):
     """
-    This function returns a Route object for a single path.
+    This function returns a Route object for a single path to a specific view.
     :param pattern: resource URL
     :param view: the view function you want to execute when accessing this URL
     :param name: name of the path
@@ -56,7 +64,7 @@ def path(pattern, view, name=None):
 def include(app):
     """
     This function returns the paths of other urls.py files
-    :param app:
+    :param app: path reference
     :return:
     """
     return app.URL_PATTERNS
