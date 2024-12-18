@@ -1,4 +1,4 @@
-from backend import http_server
+from backend import http_server, DEFAULTS
 import os.path
 import re
 import socket
@@ -17,31 +17,66 @@ def clean_name(function):
 
 
 def copy(origin, destination):
-    for item in os.listdir(origin):
-        source_item = os.path.join(origin, item)
-        destination_item = os.path.join(destination, item)
-        if os.path.isdir(source_item):
-            shutil.copytree(source_item, destination_item)
-        else:
-            shutil.copy2(source_item, destination_item)
+    if not os.path.exists(origin):
+        logging.error("[copy] Can not copy from or to unknown locations.")
+        return
+    elif not os.path.exists(destination):
+        logging.info("[copy] created new directory - %s", destination)
+        os.makedirs(destination)
+    try:
+        for item in os.listdir(origin):
+            source_item = os.path.join(origin, item)
+            destination_item = os.path.join(destination, item)
+            if os.path.isdir(source_item):
+                shutil.copytree(source_item, destination_item)
+            else:
+                shutil.copy2(source_item, destination_item)
+    except Exception as e:
+        logging.error("[copy] Unexpected error: %s", e)
+        raise
+
+
+def copy_all_statics():
+    logging.info("[copy_all_statics] copying static files.")
+    if os.path.exists(settings.DEFAULT_STATIC_FILE_PATH):
+        copy(settings.DEFAULT_STATIC_FILE_PATH, DEFAULTS.STATIC)
+        logging.info("[copy_all_statics] root directory static file copied over to local static file directory.")
+
+    for app in settings.apps:
+        try:
+            origin = os.path.join(app, settings.DEFAULT_STATIC_FILE_PATH)
+            destination = os.path.join(DEFAULTS.STATIC, app)
+            copy(origin, destination)
+            logging.info("[copy_all_statics] copied static files from %s to %s", origin, DEFAULTS.STATIC)
+        except Exception as e:
+            logging.error("[copy_all_statics] Unexpected error - Did you check your paths in settings.py? - %s", e)
+            raise
 
 
 def update_statics():
-    STATIC = "backend/STATIC_FILES"
-    if not os.path.exists(settings.DEFAULT_STATIC_FILE_PATH) or not os.path.exists(STATIC):
+    """
+    updates the locally saved static files directory to limit the access to the computer.
+    Note that the DEFAULT.STATIC path is the local path and that the settings.DEFAULT_STATIC_FILE_PATH is
+    the directory name / path to the static files that you created.
+    :return:
+    """
+    if not os.path.exists(settings.DEFAULT_STATIC_FILE_PATH) or not os.path.exists(DEFAULTS.STATIC):
         logging.error("[update] No such path found.")
         raise
     try:
-        for file in os.listdir(STATIC):
-            file_path = os.path.join(STATIC, file)
+        for file in os.listdir(DEFAULTS.STATIC):
+            # Iterates through all files in the default static directory
+            file_path = os.path.join(DEFAULTS.STATIC, file)
             try:
+                # removes all files and directories
                 if os.path.isfile(file_path) or os.path.islink(file_path):
                     os.unlink(file_path)
                 elif os.path.isdir(file_path):
                     shutil.rmtree(file_path)
-            except Exception:
-                logging.error("[update] Unexpected error while removing static files.")
-        copy(settings.DEFAULT_STATIC_FILE_PATH, STATIC)
+            except Exception as e:
+                logging.error("[update] Unexpected error while removing static files: %s", e)
+        # copies the new static files to the default static file directory
+        copy_all_statics()
         logging.info("[update] successfully updated static file system.")
     except FileNotFoundError as e:
         logging.error("[update] Could not find file: %s", e)
