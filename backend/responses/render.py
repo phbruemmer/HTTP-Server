@@ -14,6 +14,7 @@ def render(request, path, args=None, **kwargs):
     :return:
     """
     host = kwargs.get('host')
+    cookie_header = kwargs.get('cookie')
 
     file_data = ''
 
@@ -31,7 +32,11 @@ def render(request, path, args=None, **kwargs):
                 file_data = file_data.replace(target, '')
     content_type = DEFAULTS.get_file_type(path)
 
-    return DEFAULTS.generate_response(200, server=host, file_content=file_data.encode(), content_type=content_type)
+    return DEFAULTS.generate_response(200,
+                                      server=host,
+                                      file_content=file_data.encode(),
+                                      content_type=content_type,
+                                      cookie=cookie_header)
 
 
 def methods(method, content):
