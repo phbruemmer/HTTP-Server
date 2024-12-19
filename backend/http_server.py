@@ -1,4 +1,5 @@
-from backend import url_handler, error_handling, http_mapper
+from backend import url_handler, http_mapper
+from backend.responses import error_handling
 from backend.request_methods import GET
 import socket
 import logging

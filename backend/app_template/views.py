@@ -1,5 +1,3 @@
-from backend import render
-
 """
 Example view:
 

@@ -1,4 +1,4 @@
-from backend import render
+from backend.responses import render
 import settings
 
 DEFAULT_MESSAGES = {

@@ -1,4 +1,4 @@
-from backend import error_handling
+from backend.responses import error_handling
 import logging
 
 
@@ -33,7 +33,6 @@ class Router:
                 flat_routes.append(Route(prefix + route.pattern, route.view, route.name))
         logging.info("[flatten_routes] routes flattened.")
         return flat_routes
-
 
     def resolve(self, pattern, request=None):
         """

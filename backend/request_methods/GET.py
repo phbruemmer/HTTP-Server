@@ -1,4 +1,5 @@
-from backend import url_handler, error_handling
+from backend import url_handler
+from backend.responses import error_handling
 import logging
 
 
