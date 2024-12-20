@@ -129,6 +129,29 @@ def get_by_id(table, entry_id, **kwargs):
 
 
 @connect
+def get_column_value_by_id(table, entry_id, column, **kwargs):
+    """
+    Determines the requested column value from the specified table via the entry_id
+    :param table: name of the table (string)
+    :param entry_id: id of the entry (int)
+    :param column: name of the column (string)
+    :return: column value
+    """
+
+    cursor = kwargs.get('cursor')
+
+    """
+    SELECT column_name
+    FROM table_name
+    WHERE id_column = specific_id;
+    """
+
+    query = f"SELECT {column} FROM {table} WHERE {entry_id} = %s;"
+    cursor.execute(query, (entry_id,))
+    return cursor.fetchone()[0]
+
+
+@connect
 def remove(table, id_value, **kwargs):
     """
     Removes data from specific table with specific item ID ( '*' for all items)
@@ -184,27 +207,54 @@ def read(table, printable=False, **kwargs):
 
 
 @connect
-def write(table, value, **kwargs):
+def write(table, data, **kwargs):
     """
-    Writes data into the users database table
-    :param table: table name in the database (string)
-    :param value: Value to add to the database (tuple)
-    :return:
+    Inserts a new row or updates an existing one in the specified table.
+
+    :param table: The name of the table (string)
+    :param data: A dictionary of column-value pairs to insert
+    :return: None
     """
     cursor = kwargs.get('cursor')
     conn = kwargs.get('conn')
 
-    cursor.execute(f"INSERT INTO {table} (username, email, password) VALUES (%s, %s, %s)", value)
+    columns = ', '.join(data.keys())
+    values = tuple(data.values())
+
+    placeholders = ", ".join(["%s"] * len(data))
+    insert_query = f"INSERT INTO {table} ({columns}) VALUES ({placeholders})"
+    cursor.execute(insert_query, values)
+    logging.info(f"[upsert] Inserted new entry into {table}.")
+
     conn.commit()
-    logging.info("[database_connector - write] Inserted data into the database.")
 
 
-if __name__ == "__main__":
-    write("users", ("test", "test@test.test", "test"))
-    exit_code = remove("users", get_id('users', 'username', 'test1', force_clean=True))
-    print(exit_code)
-    get_id(table="users", column="username", value="test")
-    test = get_by_id("users", 10)
-    # print(test)
-    valid = validate("users", "Test", 1)
+@connect
+def update_column(table, column, value, unique_column, unique_value, **kwargs):
+    """
+    Updates a specific column in a row based on a unique identifier (e.g., id).
 
+    :param table: The name of the table (string)
+    :param column: The name of the column to update (string)
+    :param value: The new value to set for the column
+    :param unique_column: The column that uniquely identifies the row (e.g., id)
+    :param unique_value: The unique value to look for in the 'unique_column'
+    :return: None
+    """
+    cursor = kwargs.get('cursor')
+    conn = kwargs.get('conn')
+
+    # Create the SQL UPDATE query
+    update_query = f"UPDATE {table} SET {column} = %s WHERE {unique_column} = %s"
+
+    try:
+        # Execute the update query with the given value and unique identifier
+        cursor.execute(update_query, (value, unique_value))
+        conn.commit()
+        logging.info(f"[update_column] Updated {column} in {table} where {unique_column} = {unique_value}.")
+    except mysql.connector.Error as e:
+        logging.error("[update_column] MySQL error: %s", e)
+        conn.rollback()
+    except Exception as e:
+        logging.error("[update_column] Unexpected error: %s", e)
+        conn.rollback()
