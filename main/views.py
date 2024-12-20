@@ -1,5 +1,3 @@
-import logging
-
 from backend.responses import render, redirect
 from backend.cookie_handling import map_cookies
 from backend.database import database_connector as dc
