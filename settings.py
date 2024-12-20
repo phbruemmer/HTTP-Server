@@ -16,6 +16,13 @@ connection_routing = {
     'database': 'localhost',
 }
 
+CONFIG = {
+    'host': connection_routing['database'],
+    'user': 'root',
+    'password': '',
+    'database': 'neptune_test_db',
+}
+
 # to prevent unwanted database operations
 allowed_tables = ['users']
 

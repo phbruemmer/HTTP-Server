@@ -13,13 +13,6 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-CONFIG = {
-    'host': settings.connection_routing['database'],
-    'user': 'root',
-    'password': '',
-    'database': 'test',
-}
-
 
 def connect(function):
     """
@@ -32,7 +25,7 @@ def connect(function):
         conn = None
         cursor = None
         try:
-            conn = mysql.connector.connect(**CONFIG)
+            conn = mysql.connector.connect(**settings.CONFIG)
             if conn.is_connected():
                 logging.info("[database_connector-test] Successfully connected to the database.")
                 cursor = conn.cursor()
