@@ -1,23 +1,37 @@
+import logging
+
+
 def create(*args, **kwargs):
     """
-    creates a cookie header for the HTTP response.
+    Creates a Set-Cookie header for the HTTP response (without the 'Set-Cookie:' field prefix)
     :return: string (cookie header)
     """
-    kwargs.get("expires", "")
-    kwargs.get("max_age", "")
-
     cookie = "Set-Cookie: "
 
-    # Add key-value pairs from kwargs
-    for param in kwargs:
-        cookie += f"{param}={kwargs[param]}; "
+    # Add other key-value pairs from kwargs (e.g., user_id, session_id)
+    for param, value in kwargs.items():
+        if param not in ['expires', 'max_age', 'path']:
+            cookie += f"{param}={value}; "
 
-    # Add security flags
+    # Add security flags (from *args)
     for arg in args:
         cookie += f"{arg}; "
-    return cookie + "\r\n"
+
+    path = kwargs.get('path', '/')
+    cookie += f"path={path}; "
+
+    if 'expires' in kwargs:
+        cookie += f"expires={kwargs['expires']}; "
+    if 'max_age' in kwargs:
+        cookie += f"max-age={kwargs['max_age']}; "
+
+    cookie = cookie.strip('; ')
+
+    logging.info("[cookie - create] Created new cookie.")
+
+    return cookie
 
 
 if __name__ == '__main__':
-    header = create(expires="Wed, 19 Jan 2038 03:14:07 GMT", max_age=3600, user_id="12345", session_id="abcde")
+    header = create(max_age=3600, user_id="12345", session_id="abcde")
     print(header)
