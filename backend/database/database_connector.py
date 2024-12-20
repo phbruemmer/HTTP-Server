@@ -247,14 +247,8 @@ def update_column(table, column, value, unique_column, unique_value, **kwargs):
     # Create the SQL UPDATE query
     update_query = f"UPDATE {table} SET {column} = %s WHERE {unique_column} = %s"
 
-    try:
-        # Execute the update query with the given value and unique identifier
-        cursor.execute(update_query, (value, unique_value))
-        conn.commit()
-        logging.info(f"[update_column] Updated {column} in {table} where {unique_column} = {unique_value}.")
-    except mysql.connector.Error as e:
-        logging.error("[update_column] MySQL error: %s", e)
-        conn.rollback()
-    except Exception as e:
-        logging.error("[update_column] Unexpected error: %s", e)
-        conn.rollback()
+    # Execute the update query with the given value and unique identifier
+    cursor.execute(update_query, (value, unique_value))
+    conn.commit()
+    logging.info(f"[update_column] Updated {column} in {table} where {unique_column} = {unique_value}.")
+
