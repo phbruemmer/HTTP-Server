@@ -2,6 +2,7 @@ from backend import request_handler
 from backend.cookie_handling import cookies
 from backend.responses import render, redirect
 from backend.database import database_connector as dc
+from loginApp.modules import session_id
 import hashlib
 
 
@@ -18,9 +19,10 @@ def main(request):
         hash_object.update(params['password'].encode())
         hash_hex = hash_object.hexdigest()
         if user_id and dc.get_by_id('users', user_id)[3] == hash_hex:
-            session_cookie = cookies.create('HttpOnly', path="/", session_id=123)
+            session_value, session_hex = session_id.create()
+            session_cookie = cookies.create('HttpOnly', path="/", session_id=session_value)
             # Updates the session_id column in the users table of the database
-            dc.update_column('users', 'session_id', 123, 'id', user_id)
+            dc.update_column('users', 'session_id', session_hex, 'id', user_id)
             return redirect.redirect('/', cookies=[session_cookie])
             # return render.render(request, 'HTML_files/home.html', args)
         else:

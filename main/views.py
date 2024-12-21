@@ -1,6 +1,7 @@
 from backend.responses import render, redirect
 from backend.cookie_handling import map_cookies
 from backend.database import database_connector as dc
+import hashlib
 
 
 def home(request):
@@ -16,7 +17,13 @@ def home(request):
         print("[home] No cookies")
         return redirect.redirect('/account/login')
 
-    user_id = dc.get_id('users', 'session_id', cookies.get('session_id'), force_clean=True)
+    session_id = cookies.get('session_id')
+
+    hash_object = hashlib.sha256()
+    hash_object.update(str(session_id).encode())
+    user_hash = hash_object.hexdigest()
+
+    user_id = dc.get_id('users', 'session_id', user_hash, force_clean=True)
     # print(user_id)
 
     if user_id is None:
