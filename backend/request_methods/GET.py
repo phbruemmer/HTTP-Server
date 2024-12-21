@@ -10,7 +10,6 @@ def GET(HOST, request):
     :param request: request Hashmap with HTTP information
     :return:
     """
-
     if 'html' in request['headers']['Accept']:
         logging.info("[GET] Path found - 200 OK")
         response = url_handler.handle(request)
